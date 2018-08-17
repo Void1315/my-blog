@@ -23,7 +23,7 @@ Vue.component('my-header', require('./components/Header.vue'));
 // Vue.component('index-content', require('./components/IndexContent.vue'));
 Vue.component('article-over', require('./components/ArticleOverview.vue'));
 import Index from "./components/index.vue";
-import IndexContent from "./components/IndexContent.vue";
+// import IndexContent from "./components/IndexContent.vue";
 import Article from "./components/Article.vue";
 
 import ElementUI from 'element-ui';
@@ -41,16 +41,14 @@ Vue.use(ElementUI);
 // 或者，只是一个组件配置对象。asdasd
 // 我们晚点再讨论嵌套路由。
 
-// const  IndexContent_ = () => Promise.resolve(IndexContent)
+const  IndexContent = () => import('./components/IndexContent.vue');
 // const Foo = () => import('./components/IndexContent.vue');
 const routes = [
   	{ 	path: '/',
   		component: Index ,
   		children:[{
   			path: '',
-        	component: function(resolve){
-        		require(["./components/IndexContent.vue"], resolve);
-        	}
+        	component: resolve=>require(["./components/IndexContent.vue"], resolve),
   		},
   		{
   			path:"article",
