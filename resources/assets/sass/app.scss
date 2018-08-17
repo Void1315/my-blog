@@ -1,0 +1,78 @@
+
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+
+// Variables
+@import "variables";
+
+// Bootstrap
+@import "~bootstrap-sass/assets/stylesheets/bootstrap";
+
+$back-color : rgb(147,147,147);
+$c-color: #FFFFFF;
+$clear-love-shadow:rgb(119, 119, 119) 3px 0px 5px 0px;
+$border-color: rgb(102,102,102);
+$border-style: 1px solid $border-color;
+$radia-shadow:rgb(119, 119, 119) 0px 0px 5px 1px;
+$triangle-color : rgb(96,96,96);
+$triangle-alpha: 0.66;
+html,body{
+	height: 100%;
+	background-color: $back-color;
+}
+.item-ctent{
+    display: flex;
+    align-items: center;
+}
+.cy{
+	border-radius: 100%;
+    border-width: 0px;
+	border-style: solid;
+}
+.inline-box{
+	display:inline-block;
+}
+.flex{
+	display:flex;
+}
+.right-content{
+	transition: all .5s;
+	width: auto;
+    right: 0;
+    left: 330px;
+    position: absolute;
+    z-index: 0;
+}
+.on-cursor{
+	cursor:pointer;
+}
+.content{
+	margin: 15px 40px 0 60px;
+    border: $border-style;
+    background-color: white;
+    border-radius: 3px;
+    box-shadow: $clear-love-shadow;
+    min-width: 800px;
+}
+.side-triangle{
+	display: inline-block;
+	width: 0px;
+	height: 0px;
+	border-style: solid;
+    border-width: 25px;
+	border-color: $triangle-color transparent transparent $triangle-color;
+	opacity: $triangle-alpha;
+}
+.data-box{
+	margin-top: 10px;
+    float: right;
+    margin-right: 40px;
+}
+.side-hr{
+	border-top: 1px solid #BBBBBB;
+}
+.border-shadow{
+	border: $border-style;
+	box-shadow: $clear-love-shadow;
+	border-radius: 3px;
+}
