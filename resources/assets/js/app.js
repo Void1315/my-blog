@@ -41,14 +41,16 @@ Vue.use(ElementUI);
 // 或者，只是一个组件配置对象。asdasd
 // 我们晚点再讨论嵌套路由。
 
-const  IndexContent_ = () => Promise.resolve(IndexContent)
-
+// const  IndexContent_ = () => Promise.resolve(IndexContent)
+// const Foo = () => import('./components/IndexContent.vue');
 const routes = [
   	{ 	path: '/',
   		component: Index ,
   		children:[{
   			path: '',
-        	component: IndexContent_
+        	component: function(resolve){
+        		require(["./components/IndexContent.vue"], resolve);
+        	}
   		},
   		{
   			path:"article",
