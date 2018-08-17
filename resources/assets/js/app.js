@@ -40,12 +40,15 @@ Vue.use(ElementUI);
 // 通过 Vue.extend() 创建的组件构造器，
 // 或者，只是一个组件配置对象。
 // 我们晚点再讨论嵌套路由。
+
+const  IndexContent_ = () => Promise.resolve(IndexContent)
+
 const routes = [
   	{ 	path: '/',
   		component: Index ,
   		children:[{
   			path: '',
-        	component: IndexContent
+        	component: IndexContent_
   		},
   		{
   			path:"article",
