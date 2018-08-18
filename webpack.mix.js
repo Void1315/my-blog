@@ -18,4 +18,6 @@ mix.webpackConfig({
         publicPath: "/",
         chunkFilename: 'js/lazy/[name].[chunkhash].js'
     },
+    externals: {
+ 	}
 })

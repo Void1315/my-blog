@@ -27,11 +27,14 @@ import Index from "./components/index.vue";
 import Article from "./components/Article.vue";
 
 import ElementUI from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css';
-import '../font-awesome/css/font-awesome.min.css';
 import VueRouter from 'vue-router';
 
+import 'element-ui/lib/theme-chalk/index.css';
+import '../font-awesome/css/font-awesome.min.css';
+
+
 Vue.use(VueRouter);
+// Vue.use(ElementUI);
 import { Row, Col } from 'element-ui'
 
 Vue.use(Row)
