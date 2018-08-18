@@ -22,9 +22,9 @@ Vue.component('left-windows', require('./components/LeftWindows.vue'));
 Vue.component('my-header', require('./components/Header.vue'));
 // Vue.component('index-content', require('./components/IndexContent.vue'));
 Vue.component('article-over', require('./components/ArticleOverview.vue'));
-import Index from "./components/index.vue";
+// import Index from "./components/index.vue";
 // import IndexContent from "./components/IndexContent.vue";
-import Article from "./components/Article.vue";
+// import Article from "./components/Article.vue";
 
 import ElementUI from 'element-ui';
 import VueRouter from 'vue-router';
@@ -50,14 +50,11 @@ const  IndexContent = () => import('./components/IndexContent.vue');
 // const Foo = () => import('./components/IndexContent.vue');
 const routes = [
   	{ 	path: '/',
-  		component: Index ,
-  		children:[{
-  			path: '',
-        	component: resolve=>require(["./components/IndexContent.vue"], resolve),
-  		},
+  		component: resolve=>require(["./components/index.vue"], resolve),
+  		children:[
   		{
   			path:"article",
-  			component: Article
+  			component: resolve=>require(["./components/Article.vue"], resolve),
   		}
   		],
 	},
