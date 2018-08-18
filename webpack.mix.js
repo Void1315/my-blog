@@ -19,5 +19,8 @@ mix.webpackConfig({
         chunkFilename: 'js/lazy/[name].[chunkhash].js'
     },
     externals: {
+    	'vue': 'Vue',
+    	'vue-router': 'VueRouter',
+    	'element-ui': 'ELEMENT',
  	}
 })

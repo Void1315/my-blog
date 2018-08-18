@@ -51,7 +51,10 @@ const  IndexContent = () => import('./components/IndexContent.vue');
 const routes = [
   	{ 	path: '/',
   		component: resolve=>require(["./components/index.vue"], resolve),
-  		children:[
+  		children:[{
+  			path: '',
+      	component: resolve=>require(["./components/IndexContent.vue"], resolve),
+  		},
   		{
   			path:"article",
   			component: resolve=>require(["./components/Article.vue"], resolve),
