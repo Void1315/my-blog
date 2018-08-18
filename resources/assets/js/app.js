@@ -32,8 +32,10 @@ import '../font-awesome/css/font-awesome.min.css';
 import VueRouter from 'vue-router';
 
 Vue.use(VueRouter);
-Vue.use(ElementUI);
+import { Row, Col } from 'element-ui'
 
+Vue.use(Row)
+Vue.use(Col)
 
 // 2. 定义路由
 // 每个路由应该映射一个组件。 其中"component" 可以是
