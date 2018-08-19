@@ -5,9 +5,7 @@
 		<div :class="['right-content',{'long':contentLong,'short':contentShort}]">
 			<my-header>
 			</my-header>
-			<!-- <index-content> -->
 			<router-view></router-view>
-			<!-- </index-content> -->
 		</div>
 		
 	</div>
@@ -30,10 +28,19 @@
 </script>
 <style lang="scss" scoped="" type="text/css">
 @import "../../sass/app.scss";
+
 .long{
 	left:0px;
 }
 .short{
-	left:330px;
+	left:$right-set;
+	@media #{$medie-type} and (max-width: $phone-size){
+		left: 0px;
+	}
+}
+@media #{$medie-type} and (max-width: $phone-size){
+	.right-content{
+		left:0px;
+	}
 }
 </style>

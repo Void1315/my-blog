@@ -20,18 +20,16 @@ window.Vue = require('vue');
 // import LeftWin from "./components/LeftWindows.vue"
 Vue.component('left-windows', require('./components/LeftWindows.vue'));
 Vue.component('my-header', require('./components/Header.vue'));
-// Vue.component('index-content', require('./components/IndexContent.vue'));
+
 Vue.component('article-over', require('./components/ArticleOverview.vue'));
-// import Index from "./components/index.vue";
-// import IndexContent from "./components/IndexContent.vue";
-// import Article from "./components/Article.vue";
+
 
 import ElementUI from 'element-ui';
 import VueRouter from 'vue-router';
 
 import 'element-ui/lib/theme-chalk/index.css';
 import '../font-awesome/css/font-awesome.min.css';
-
+import 'element-ui/lib/theme-chalk/display.css';
 
 Vue.use(VueRouter);
 // Vue.use(ElementUI);

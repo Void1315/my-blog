@@ -9,11 +9,11 @@
 		<div class="item-box">
 			<div class="home-box">
 				<i class="fa fa-home"></i>
-				<span>Home</span>
+				<span class="hidden-md-and-down">Home</span>
 			</div>
 			<div class="img-box">
 				<i class="fa fa-image"></i>
-				<span>Image</span>
+				<span class="hidden-md-and-down">Image</span>
 			</div>
 		</div>
 	</div>
@@ -46,7 +46,7 @@
 	    height: 45px;
 	    top: 0px;
 	    z-index: 2;
-	    background-color: rgb(255, 255, 255);
+	    background-color: #f6f6f6;
 	    border-color: rgb(113, 113, 113);
 	    border-radius: 6px;
 	    font-size: 20px;
@@ -99,4 +99,25 @@
 	    font-size: 30px;
 		color: black;
 	}
+@media #{$medie-type} and (max-width: $phone-size){
+	.header-box{
+		height: 65px;
+		border-bottom: $border-style;
+		background-color: $back-color;
+	}
+	.item-box{
+		width: auto;
+		right: 15px;
+		i{
+			margin-left: 20px;
+		}
+		
+	}
+	.search-box{
+		left:10px;
+		i{
+			left:195px;
+		}
+	}
+}
 </style>

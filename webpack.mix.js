@@ -23,4 +23,4 @@ mix.webpackConfig({
     	'vue-router': 'VueRouter',
     	'element-ui': 'ELEMENT',
  	}
-})
+});

@@ -84,7 +84,7 @@
 	 	}
   	}
 </script>
-<style lang="scss" scoped="" type="text/css">
+<style lang="scss" scoped="true" type="text/css">
 @import "../../sass/app.scss";
 
 .article-box{
@@ -126,4 +126,6 @@
 .comment-text{
 	box-shadow: $clear-love-shadow;
 }
+
+
 </style>

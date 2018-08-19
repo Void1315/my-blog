@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="left-all">
 		<transition name="el-fade-in-linear">
 			<div v-show="show" :class="{'to-show':to_show,'to-hide':to_hide}">
 				<div class="left-top">		
@@ -86,6 +86,7 @@
 
 <style lang="scss" scoped="" type="text/css">
 	@import "../../sass/app.scss";
+
 
 	.left-base{
 		box-shadow: $clear-love-shadow;
@@ -227,5 +228,10 @@
 .to-right{
 	left: 0px;
 	transform:rotate(180deg);
+}
+@media #{$medie-type} and (max-width: $phone-size){
+	.left-all{
+		display:none;
+	}
 }
 </style>

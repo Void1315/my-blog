@@ -3,6 +3,7 @@
 
 		<article-over>
 		</article-over>
+		<hr class="hidden-md-and-up">
 		<article-over>
 		</article-over>
 		<br><br><br><br><br><br><br>

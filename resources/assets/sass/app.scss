@@ -8,6 +8,8 @@
 // Bootstrap
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
 
+
+
 $back-color : rgb(147,147,147);
 $c-color: #FFFFFF;
 $clear-love-shadow:rgb(119, 119, 119) 3px 0px 5px 0px;
@@ -16,6 +18,15 @@ $border-style: 1px solid $border-color;
 $radia-shadow:rgb(119, 119, 119) 0px 0px 5px 1px;
 $triangle-color : rgb(96,96,96);
 $triangle-alpha: 0.66;
+
+
+$medie-type: screen;
+$phone-size: 800px;
+$right-set:330px;
+
+
+
+
 html,body{
 	height: 100%;
 	background-color: $back-color;
@@ -52,9 +63,9 @@ html,body{
     background-color: white;
     border-radius: 3px;
     box-shadow: $clear-love-shadow;
-    min-width: 800px;
 }
 .side-triangle{
+	float: left;
 	display: inline-block;
 	width: 0px;
 	height: 0px;
@@ -65,14 +76,30 @@ html,body{
 }
 .data-box{
 	margin-top: 10px;
-    float: right;
-    margin-right: 40px;
+	margin-right: 20px;
+    display: inline-block;
+    float:right;
 }
 .side-hr{
 	border-top: 1px solid #BBBBBB;
+}
+.short-hr{
+    margin-top: 3px;
+    margin-bottom: 15px;
 }
 .border-shadow{
 	border: $border-style;
 	box-shadow: $clear-love-shadow;
 	border-radius: 3px;
+}
+@media #{$medie-type} and (max-width: $phone-size){
+	.content{
+	    border-radius: 0;
+		margin: 0;
+    	border: none;
+    	box-shadow:none;
+	}
+	.data-box{
+
+	}
 }
