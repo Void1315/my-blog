@@ -16,6 +16,7 @@
 	<script src="https://cdn.bootcss.com/vue/2.5.7/vue.min.js"></script>
 	<script src="https://unpkg.com/element-ui@2.4.6/lib/index.js"></script>
 	<script src="https://cdn.bootcss.com/vue-router/3.0.1/vue-router.js"></script>
+	<script src="https://cdn.bootcss.com/axios/0.18.0/axios.min.js"></script>
 	<script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

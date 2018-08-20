@@ -21,9 +21,11 @@
     "laravel-mix": "^1.0",
     "lodash": "^4.17.4",
     "vue": "^2.5.7",
-    "vue-router":"^3.0.1"
+    "vue-cute-timeline": "^1.2.5",
+    "vue-router": "^3.0.1"
   },
   "dependencies": {
-    "element-ui": "^2.4.6"
+    "element-ui": "^2.4.6",
+    "vue2-preview": "^1.0.2"
   }
 }

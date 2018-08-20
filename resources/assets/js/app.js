@@ -24,25 +24,27 @@ Vue.component('my-header', require('./components/Header.vue'));
 Vue.component('article-over', require('./components/ArticleOverview.vue'));
 Vue.component('to-top', require("./components/ToTop.vue"));
 
+
 import ElementUI from 'element-ui';
 import VueRouter from 'vue-router';
+import axios from 'axios';
 
 import 'element-ui/lib/theme-chalk/index.css';
 import '../font-awesome/css/font-awesome.min.css';
 import 'element-ui/lib/theme-chalk/display.css';
 
-import 'element-ui/lib/theme-chalk/base.css';
+
+// import 'element-ui/lib/theme-chalk/base.css';
 // collapse 展开折叠
-import CollapseTransition from 'element-ui/lib/transitions/collapse-transition';
-Vue.component(CollapseTransition.fade, CollapseTransition)
+// import CollapseTransition from 'element-ui/lib/transitions/collapse-transition';
+// Vue.component(CollapseTransition.fade, CollapseTransition)
 
-
+Vue.prototype.$ajax = axios;
 Vue.use(VueRouter);
-// Vue.use(ElementUI);
-import { Row, Col } from 'element-ui'
 
-Vue.use(Row)
-Vue.use(Col)
+import { Row, Col } from 'element-ui';
+Vue.use(Row);
+Vue.use(Col);
 
 // 2. 定义路由
 // 每个路由应该映射一个组件。 其中"component" 可以是
@@ -62,7 +64,11 @@ const routes = [
   		{
   			path:"article",
   			component: resolve=>require(["./components/Article.vue"], resolve),
-  		}
+  		},
+      {
+        path:"image",
+        component: resolve=>require(["./components/ImageTime.vue"], resolve),
+      }
   		],
 	},
 ];
