@@ -75,31 +75,13 @@
 	}
 </script>
 
-<style lang="scss" scoped="ture" type="text/css">
+<style lang="scss"  type="text/css">
 @import "../../sass/app.scss";
 
 
 
 
-.article-box{
-	width: 90%;
-	height: auto;
-	margin: 0 auto;
-	margin-top: 30px;
-    margin-bottom: 25px;
-	border: $border-style;
-	border-radius: 3px;
-    box-shadow: $clear-love-shadow;
-    .head-box{
-    	display: inline-block;
-    	float: left;
-    }
-    .icon-box{
-	    padding: 0px 45px;
-        margin: 15px 0;
-    }
 
-}
 
 .img-box{
 	width: 100%;
@@ -136,11 +118,11 @@
     // height: 190px;
     overflow: hidden;
     margin-top: 15px;
+    p{
+    	word-break: break-word;
+    }
 }
-.title{
-	font-size: 25px;
-    font-weight: 600;
-}
+
 .like-box{
 	display: inline-flex;
 	flex-direction: row-reverse; 
@@ -155,44 +137,7 @@
 	}
 }
 
-@media #{$medie-type} and (max-width: $phone-size){
-	.article-box{
-		height: auto;
-		border: none;
-		box-shadow: none;
-		margin: auto;
-		width:90%;
-		.head-box{
-			display: block;
-    		float: none;
-    		margin-top: 10px;
-    		p{
-    			margin: 0;
-    		}
-		}
-		.data-box{
-			float:none;
-			margin: 0;
-		    display: block;
-		}
-		.side-triangle{
-			display:none;
-		}
-		.img-box{
-			height:auto;
-		}
-		.icon-box{
-			padding: 0;
-			margin: 0;
-			margin-top: 15px;
-			.like{
-				display: inline-flex;
-			    flex-wrap: wrap;
-			    justify-content: center;
-			}
-		}
-	}
-}
+
 
 
 </style>

@@ -7,7 +7,7 @@
 			</my-header>
 			<router-view></router-view>
 		</div>
-		
+		<to-top></to-top>
 	</div>
 </template>
 <script>

@@ -6,6 +6,7 @@
 		<hr class="hidden-md-and-up">
 		<article-over>
 		</article-over>
+		
 		<br><br><br><br><br><br><br>
 	</div>
 </template>

@@ -7,11 +7,11 @@
 			<i class="fa fa-search"></i>
 		</div>
 		<div class="item-box">
-			<div class="home-box">
+			<div class="head-home-box">
 				<i class="fa fa-home"></i>
 				<span class="hidden-md-and-down">Home</span>
 			</div>
-			<div class="img-box">
+			<div class="head-img-box">
 				<i class="fa fa-image"></i>
 				<span class="hidden-md-and-down">Image</span>
 			</div>
@@ -90,10 +90,10 @@
 	    width: 280px;
 	    display: flex;
 	    justify-content: space-between;
-	    .home-box{
+	    .head-home-box{
     	    display: inline-block;
 	    }
-	    .img-box{
+	    .head-img-box{
     	    display: inline-block;
 	    }
 	    font-size: 30px;

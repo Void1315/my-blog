@@ -22,7 +22,7 @@ Vue.component('left-windows', require('./components/LeftWindows.vue'));
 Vue.component('my-header', require('./components/Header.vue'));
 
 Vue.component('article-over', require('./components/ArticleOverview.vue'));
-
+Vue.component('to-top', require("./components/ToTop.vue"));
 
 import ElementUI from 'element-ui';
 import VueRouter from 'vue-router';
@@ -30,6 +30,12 @@ import VueRouter from 'vue-router';
 import 'element-ui/lib/theme-chalk/index.css';
 import '../font-awesome/css/font-awesome.min.css';
 import 'element-ui/lib/theme-chalk/display.css';
+
+import 'element-ui/lib/theme-chalk/base.css';
+// collapse 展开折叠
+import CollapseTransition from 'element-ui/lib/transitions/collapse-transition';
+Vue.component(CollapseTransition.fade, CollapseTransition)
+
 
 Vue.use(VueRouter);
 // Vue.use(ElementUI);

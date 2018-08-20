@@ -21,7 +21,7 @@ $triangle-alpha: 0.66;
 
 
 $medie-type: screen;
-$phone-size: 800px;
+$phone-size: 992px;
 $right-set:330px;
 
 
@@ -92,6 +92,31 @@ html,body{
 	box-shadow: $clear-love-shadow;
 	border-radius: 3px;
 }
+
+.article-box{
+	width: 90%;
+	height: auto;
+	margin: 0 auto;
+	margin-top: 30px;
+    margin-bottom: 25px;
+	border: $border-style;
+	border-radius: 3px;
+    box-shadow: $clear-love-shadow;
+    .head-box{
+    	display: inline-block;
+    	float: left;
+		.title{
+			font-size: 25px;
+		    font-weight: 600;
+		}
+    }
+    .icon-box{
+	    padding: 0px 45px;
+        margin: 15px 0;
+    }
+
+}
+
 @media #{$medie-type} and (max-width: $phone-size){
 	.content{
 	    border-radius: 0;
@@ -101,5 +126,47 @@ html,body{
 	}
 	.data-box{
 
+	}
+}
+
+@media #{$medie-type} and (max-width: $phone-size){
+	.article-box{
+		height: auto;
+		border: none;
+		box-shadow: none;
+		margin: auto;
+		width:90%;
+		.head-box{
+			display: block;
+    		float: none;
+    		margin-top: 10px;
+    		p{
+    			margin: 0;
+    		}
+		}
+		.data-box{
+			float:none;
+			margin: 0;
+		    display: block;
+		}
+		.side-triangle{
+			display:none;
+		}
+		.img-box{
+			height:auto;
+		}
+		.icon-box{
+			padding: 0;
+			margin: 0;
+			margin-top: 15px;
+			.like{
+				display: inline-flex;
+			    flex-wrap: wrap;
+			    justify-content: center;
+			    i{
+		    	    line-height: 25px;
+			    }
+			}
+		}
 	}
 }

@@ -2,28 +2,24 @@
 	<div class="content">
 		<div class="article-box">
 			<el-row>
-				<el-col :span="2">
+				<el-col :span="4" :lg="{span:2}">
 					<div class="side-triangle article-triangle">
 					</div>
 				</el-col>
-				<el-col :span="6"  :offset="1">
-					<div class="title">
-						<font>
-							标题字要大
-						</font>
-					</div>
-				</el-col>
-				<el-col :span="6" :offset="9" >
-					<div class="data-box">
-						<i class="fa fa-calendar-plus-o"></i>
-						<span>
-							2018-08-14 22:45
-						</span>
-					</div>
-				</el-col>
+				<div class="head-box">
+					<p class="title">
+						Le Petit Prince
+					</p>
+				</div>
+				<div class="data-box">
+					<i class="fa fa-calendar-plus-o"></i>
+					<span>
+						2018-08-14 22:45
+					</span>
+				</div>
 			</el-row>
 			<el-row>
-				<el-col :span="18" :offset="3" >
+				<el-col :md="{span:18,offset:3}" :xs="{span:24,offset:0}" class="text-box" >
 					<p>asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd</p>
 					<p>asdasd</p>
 					<p>asdasd</p>
@@ -40,12 +36,12 @@
 				</el-col>
 			</el-row>
 			<el-row>
-				<el-col :span="22" :offset="1" >
+				<el-col >
 					<hr class="side-hr">
 				</el-col>
 			</el-row>
-			<el-row>
-				<el-col class="lable-box" :span="3" :offset="1">
+			<el-row type="flex" justify="space-between">
+				<div class="lable-box" >
 					<div class="lable-item">
 						<i class="fa fa-tag"></i>
 						<span>PHP</span>
@@ -54,8 +50,8 @@
 						<i class="fa fa-tag"></i>
 						<span>Java</span>
 					</div>
-				</el-col>
-				<el-col class="like-box" :span="3" :offset="16">
+				</div>
+				<div class="like-box" >
 					<div class="lable-item">
 						<i class="fa fa-thumbs-o-down"></i>
 						<span>0</span>
@@ -67,7 +63,7 @@
 					<div class="lable-item">
 						<i class="fa fa-share-alt"></i>
 					</div>
-				</el-col>
+				</div>
 			</el-row>
 			<div class="comment-box">
 				<br><br><br><br><br>
@@ -94,6 +90,11 @@
 	border: $border-style;
     margin: 20px auto;
     padding-bottom: 20px;
+}
+.text-box{
+	p{
+    	word-break: break-word;
+	}
 }
 .article-triangle{
 	border-width: 45px;
@@ -125,6 +126,24 @@
 }
 .comment-text{
 	box-shadow: $clear-love-shadow;
+}
+.lable-box{
+	display: inline-block;
+}
+.like-box{
+	display: inline-block;
+}
+@media #{$medie-type} and (max-width: $phone-size){
+	.article-box{
+		height: auto;
+		border: none;
+		box-shadow: none;
+		margin: auto;
+		width:90%;
+	}
+	.side-triangle{
+		display:none;
+	}
 }
 
 
