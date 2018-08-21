@@ -8,12 +8,18 @@
 		</div>
 		<div class="item-box">
 			<div class="head-home-box">
+				<a href="/#/">
+					
+				
 				<i class="fa fa-home"></i>
 				<span class="hidden-md-and-down">Home</span>
+				</a>
 			</div>
 			<div class="head-img-box">
+				<a href="/#/image">
 				<i class="fa fa-image"></i>
 				<span class="hidden-md-and-down">Image</span>
+				</a>
 			</div>
 		</div>
 	</div>
@@ -90,6 +96,10 @@
 	    width: 280px;
 	    display: flex;
 	    justify-content: space-between;
+		a{
+			color: black;
+			text-decoration:none;
+		}
 	    .head-home-box{
     	    display: inline-block;
 	    }

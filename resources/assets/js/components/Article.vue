@@ -20,6 +20,7 @@
 			</el-row>
 			<el-row>
 				<el-col :md="{span:18,offset:3}" :xs="{span:24,offset:0}" class="text-box" >
+					
 					<p>asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd</p>
 					<p>asdasd</p>
 					<p>asdasd</p>
@@ -33,6 +34,7 @@
 					<p>asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd</p>
 					<p>asdasd</p>
 					<p>asdasd</p>
+					
 				</el-col>
 			</el-row>
 			<el-row>
@@ -40,7 +42,7 @@
 					<hr class="side-hr">
 				</el-col>
 			</el-row>
-			<el-row type="flex" justify="space-between">
+			<el-row type="flex" class="bottom-icon-box" justify="space-between">
 				<div class="lable-box" >
 					<div class="lable-item">
 						<i class="fa fa-tag"></i>
@@ -133,6 +135,9 @@
 .like-box{
 	display: inline-block;
 }
+.bottom-icon-box{
+	padding: 0px 100px;
+}
 @media #{$medie-type} and (max-width: $phone-size){
 	.article-box{
 		height: auto;
@@ -143,6 +148,9 @@
 	}
 	.side-triangle{
 		display:none;
+	}
+	.bottom-icon-box{
+		padding: 0;
 	}
 }
 

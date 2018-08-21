@@ -1,14 +1,14 @@
 <template>
 	<div class="content">
 		<timeline>
-		    <div v-for="items in testJson">
+		    <div v-for="(items,index) in testJson">
 		    	<timeline-title>{{items.data}} </timeline-title>
-			    <timeline-item bg-color="#9dd8e0" v-for="part in items.items">
+			    <timeline-item bg-color="#9dd8e0" v-for="(part,index1) in items.items">
 			    	<div class="image-time-data">
 			    		<p>{{part.itemData}}</p>
 			    	</div>
-			    	<div class="image-time-box" v-for="url in part.partImg">
-			    		<img v-bind:src="url.url">
+			    	<div class="image-time-box" v-for="(url,index2) in part.partImg">
+			    		<img class="preview-img" v-bind:preview="index+''+index1" v-bind:src="url.url" >
 			    	</div>
 			    	<div class="image-time-text">
 			    		<p>
@@ -27,6 +27,7 @@ import { Timeline, TimelineItem, TimelineTitle } from 'vue-cute-timeline';
 export default{
     data:function(){
      	return{
+     		pre_item:0,
      		testJson:[{
      			data:"2017-08",
      			items:[{
@@ -79,6 +80,12 @@ export default{
 	},
 	created:function(){
 		// console.log(this.$ajax)
+
+	},
+	methods:{
+		handleClose:function(){
+			console.log(1)
+		}
 	}
 }
 </script>

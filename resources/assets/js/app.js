@@ -28,17 +28,18 @@ Vue.component('to-top', require("./components/ToTop.vue"));
 import ElementUI from 'element-ui';
 import VueRouter from 'vue-router';
 import axios from 'axios';
-
 import 'element-ui/lib/theme-chalk/index.css';
 import '../font-awesome/css/font-awesome.min.css';
 import 'element-ui/lib/theme-chalk/display.css';
-
 
 // import 'element-ui/lib/theme-chalk/base.css';
 // collapse 展开折叠
 // import CollapseTransition from 'element-ui/lib/transitions/collapse-transition';
 // Vue.component(CollapseTransition.fade, CollapseTransition)
 
+import preview from 'vue-photo-preview'
+import 'vue-photo-preview/dist/skin.css'
+Vue.use(preview);
 Vue.prototype.$ajax = axios;
 Vue.use(VueRouter);
 

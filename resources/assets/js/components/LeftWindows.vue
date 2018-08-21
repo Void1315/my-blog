@@ -1,7 +1,13 @@
 <template>
+	
 	<div class="left-all">
+		<transition name="el-fade-in-linear" >
+			<div class="shadow" v-show="show" @click="hiddenLeft">
+			
+			</div>
+		</transition>
 		<transition name="el-fade-in-linear">
-			<div v-show="show" :class="{'to-show':to_show,'to-hide':to_hide}">
+			<div v-show="show" :class="{'to-show':to_show,'to-hide':!to_show}">
 				<div class="left-top">		
 					<div class="left-img-icon-box">
 						<div class="left-img-border">
@@ -55,7 +61,7 @@
 			</div>
 			
 		</transition>
-		<div :class="['hide-left-box',{'to-left':to_show,'to-right':to_hide}]" @click="switchLeft">
+		<div :class="['hide-left-box',{'to-left':to_show,'to-right':!to_show}]" @click="switchLeft">
 			<i :class="['fa','fa-angle-double-left']"></i>
 		</div>
 	</div>
@@ -68,8 +74,9 @@
      	return{
      		show:true,
      		to_show:true,
-     		to_hide:false,
-
+     		rightMove:0,
+     		touchX:0,
+     		touchY:0,
     	}
  	},
  	methods:{
@@ -79,15 +86,40 @@
 			this.to_hide = !this.to_hide;
 	    	this.$emit('switchContent');
  			
+ 		},
+ 		hiddenLeft:function(){
+ 			this.show = false;
  		}
+ 	},
+ 	created:function(){
+ 		var this_ = this
+		window.addEventListener("touchmove", function(event){
+			if(Math.abs(this_.touchY-event.touches[0].clientY)<150)
+				this_.show = event.touches[0].clientX - this_.touchX>150?true:false;
+			console.log(Math.abs(this_.touchY-event.touches[0].clientY))
+        });
+        window.addEventListener("touchstart",function(event){
+        	this_.touchX = event.touches[0].clientX;
+        	this_.touchY = event.touches[0].clientY;
+        });
  	}
+ 	
   }
+
 </script>
 
 <style lang="scss" scoped="" type="text/css">
 	@import "../../sass/app.scss";
 
+	.shadow{
+		width: 19200px;
+	    height: 19200px;
+	    position: fixed;
+	    z-index: 1;
+	    background-color: black;
+	    opacity: 0.5;
 
+	}
 	.left-base{
 		box-shadow: $clear-love-shadow;
 		width:330px;
@@ -97,7 +129,7 @@
 		display: inline-block;
 		transition: all .5s;
 		left:0px;
-		z-index: 1;
+		z-index: 3;
 	}
 	.to-show{
 		@extend .left-base;
@@ -231,7 +263,17 @@
 }
 @media #{$medie-type} and (max-width: $phone-size){
 	.left-all{
-		display:none;
+		// display:none;
+	}
+	.hide-left-box{
+		display: none;
+	}
+	
+}
+@media #{$medie-type} and (min-width: $phone-size){
+	.shadow{
+		display: none;
 	}
 }
+
 </style>

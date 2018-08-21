@@ -26,6 +26,6 @@
   },
   "dependencies": {
     "element-ui": "^2.4.6",
-    "vue2-preview": "^1.0.2"
+    "vue-photo-preview": "^1.0.9"
   }
 }
