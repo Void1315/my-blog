@@ -138,7 +138,7 @@
 			          message: '文章上传成功！',
 			          type: 'success'
 			        });
-				    this.$refs['form'].resetFields();
+				    self.$refs['form'].resetFields();
 				  	})
 		    },
 		    imgUpload(response){

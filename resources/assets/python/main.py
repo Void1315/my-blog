@@ -1,7 +1,6 @@
 from PIL import Image
 import sys
 paths = sys.argv[1:]
-print(sys.argv[1:])
 zip_path = paths[0] #"/media/asahi/办公/work/py/"
 if zip_path[-1] is not "/":
 	zip_path = zip_path+"/"
