@@ -1,11 +1,11 @@
 <template>
 	
 	<div class="left-all">
-		<transition name="el-fade-in-linear" >
+		<!-- <transition name="el-fade-in-linear" > -->
 			<div class="shadow" v-show="show" @click="hiddenLeft">
 			
 			</div>
-		</transition>
+		<!-- </transition> -->
 		<transition name="el-fade-in-linear">
 			<div v-show="show" :class="{'to-show':to_show,'to-hide':!to_show}">
 				<div class="left-top">		
@@ -89,19 +89,23 @@
  		},
  		hiddenLeft:function(){
  			this.show = false;
+ 		},
+ 		phoneHiddenLeft:function(){
+ 			if(window.screen.width<=992)
+ 				this.show = false;
  		}
  	},
  	created:function(){
  		var this_ = this
 		window.addEventListener("touchmove", function(event){
-			if(Math.abs(this_.touchY-event.touches[0].clientY)<150)
+			if(Math.abs(this_.touchY-event.touches[0].clientY)<150)//在屏幕上瞎画不会出左窗口
 				this_.show = event.touches[0].clientX - this_.touchX>150?true:false;
-			console.log(Math.abs(this_.touchY-event.touches[0].clientY))
         });
         window.addEventListener("touchstart",function(event){
         	this_.touchX = event.touches[0].clientX;
         	this_.touchY = event.touches[0].clientY;
         });
+        this.phoneHiddenLeft();
  	}
  	
   }

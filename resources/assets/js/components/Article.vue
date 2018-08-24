@@ -68,7 +68,8 @@
 				</div>
 			</el-row>
 			<div class="comment-box">
-				<br><br><br><br><br>
+				<!--PC和WAP自适应版-->
+
 			</div>
 		</div>
 	</div>

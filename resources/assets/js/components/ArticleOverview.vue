@@ -140,6 +140,9 @@
 	    margin-left: 40px;
 	}
 }
+@media #{$medie-type} and (max-width: $phone-size){
+
+}
 
 
 

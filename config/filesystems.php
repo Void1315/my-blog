@@ -47,7 +47,20 @@ return [
             'driver' => 'local',
             'root' => storage_path('app'),
         ],
-
+        'img' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/image'),
+            'visibility' => 'public',
+            'url' => env('APP_URL').'/storage/app/pulbic/image',
+            'path' => "/storage/app/public/image/"
+        ],
+        'zip_img' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/zip_image'),
+            'visibility' => 'public',
+            'url' => env('APP_URL').'/storage/app/public/zip_image',
+            'path' => "/storage/app/public/zip_image/"
+        ],
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),

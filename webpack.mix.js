@@ -23,6 +23,7 @@ mix.webpackConfig({
     	'vue-router': 'VueRouter',
     	'element-ui': 'ELEMENT',
     	"axios":"axios",
-        "jquery": 'jQuery'
+        "jquery": 'jQuery',
+        "wangEditor": "wangEditor"
  	}
 });

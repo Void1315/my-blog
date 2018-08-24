@@ -6,14 +6,13 @@
 @import "variables";
 
 // Bootstrap
-@import "~bootstrap-sass/assets/stylesheets/bootstrap";
-
+// @import "~bootstrap-sass/assets/stylesheets/bootstrap";
 
 
 $back-color : rgb(147,147,147);
 $c-color: #FFFFFF;
 $clear-love-shadow:rgb(119, 119, 119) 3px 0px 5px 0px;
-$border-color: rgb(102,102,102);
+$border-color: #6666;
 $border-style: 1px solid $border-color;
 $radia-shadow:rgb(119, 119, 119) 0px 0px 5px 1px;
 $triangle-color : rgb(96,96,96);
@@ -30,6 +29,15 @@ $right-set:330px;
 html,body{
 	height: 100%;
 	background-color: $back-color;
+    margin: 0;
+    font-family: "Raleway", sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #636b6f;
+    background-color: #f5f8fa;
+}
+a{
+	text-decoration: none;
 }
 .item-ctent{
     display: flex;
@@ -127,7 +135,20 @@ html,body{
 	.data-box{
 
 	}
+	.hidden-phone{
+		display:none;
+	}
+	.show-phone{
+		display:block;
+	}
 }
+
+@media #{$medie-type} and (min-width: $phone-size){
+	.show-phone{
+		display:none;
+	}
+}
+
 
 @media #{$medie-type} and (max-width: $phone-size){
 	.article-box{
@@ -154,6 +175,7 @@ html,body{
 		}
 		.img-box{
 			height:auto;
+			margin-bottom: 20px;
 		}
 		.icon-box{
 			padding: 0;

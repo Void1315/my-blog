@@ -31,21 +31,28 @@ import axios from 'axios';
 import 'element-ui/lib/theme-chalk/index.css';
 import '../font-awesome/css/font-awesome.min.css';
 import 'element-ui/lib/theme-chalk/display.css';
+// import $ from 'jquery';
 
-// import 'element-ui/lib/theme-chalk/base.css';
+import 'element-ui/lib/theme-chalk/base.css';
 // collapse 展开折叠
 // import CollapseTransition from 'element-ui/lib/transitions/collapse-transition';
 // Vue.component(CollapseTransition.fade, CollapseTransition)
 
 import preview from 'vue-photo-preview'
 import 'vue-photo-preview/dist/skin.css'
+
+import wangEditor from 'wangeditor'
+
 Vue.use(preview);
 Vue.prototype.$ajax = axios;
 Vue.use(VueRouter);
 
-import { Row, Col } from 'element-ui';
-Vue.use(Row);
-Vue.use(Col);
+// import { Row, Col,Input,Form,FormItem } from 'element-ui';
+// Vue.use(Row);
+// Vue.use(Col);
+// Vue.use(Input);
+// Vue.use(Form);
+// Vue.use(FormItem);
 
 // 2. 定义路由
 // 每个路由应该映射一个组件。 其中"component" 可以是
@@ -53,25 +60,42 @@ Vue.use(Col);
 // 或者，只是一个组件配置对象。asdasd
 // 我们晚点再讨论嵌套路由。
 
-const  IndexContent = () => import('./components/IndexContent.vue');
+// const  IndexContent = () => import('./components/IndexContent.vue');
 // const Foo = () => import('./components/IndexContent.vue');
 const routes = [
   	{ 	path: '/',
   		component: resolve=>require(["./components/index.vue"], resolve),
   		children:[{
-  			path: '',
-      	component: resolve=>require(["./components/IndexContent.vue"], resolve),
-  		},
-  		{
-  			path:"article",
-  			component: resolve=>require(["./components/Article.vue"], resolve),
-  		},
-      {
-        path:"image",
-        component: resolve=>require(["./components/ImageTime.vue"], resolve),
-      }
-  		],
+    			path: '',
+        	component: resolve=>require(["./components/IndexContent.vue"], resolve),
+    		},
+    		{
+    			path:"article",
+    			component: resolve=>require(["./components/Article.vue"], resolve),
+    		},
+        {
+          path:"image",
+          component: resolve=>require(["./components/ImageTime.vue"], resolve),
+        }
+      ],
 	},
+  {
+    path: "*",
+    redirect: "/"
+  },
+  {
+    path:"/admin",
+    component: resolve=>require(["./components/admin/AdminIndex.vue"], resolve),
+    children:[{
+      path: 'article',
+      component:resolve=>require(["./components/admin/articleUpload.vue"], resolve),
+    },
+    {
+      path:'article/manage',
+      component:resolve=>require(["./components/admin/articleManage.vue"], resolve),
+    }
+    ]
+  }
 ];
 const router = new VueRouter({
   routes // (缩写) 相当于 routes: routes
