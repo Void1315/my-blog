@@ -70,7 +70,7 @@ const routes = [
         	component: resolve=>require(["./components/IndexContent.vue"], resolve),
     		},
     		{
-    			path:"article",
+    			path:"article/:id",
     			component: resolve=>require(["./components/Article.vue"], resolve),
     		},
         {

@@ -15,6 +15,7 @@ $clear-love-shadow:rgb(119, 119, 119) 3px 0px 5px 0px;
 $border-color: #6666;
 $border-style: 1px solid $border-color;
 $radia-shadow:rgb(119, 119, 119) 0px 0px 5px 1px;
+$poor-shadow:#7777 1px 0px 3px 0px;
 $triangle-color : rgb(96,96,96);
 $triangle-alpha: 0.66;
 
@@ -70,7 +71,7 @@ a{
     border: $border-style;
     background-color: white;
     border-radius: 3px;
-    box-shadow: $clear-love-shadow;
+    box-shadow: $poor-shadow;
 }
 .side-triangle{
 	float: left;
@@ -109,7 +110,7 @@ a{
     margin-bottom: 25px;
 	border: $border-style;
 	border-radius: 3px;
-    box-shadow: $clear-love-shadow;
+    box-shadow: $poor-shadow;
     .head-box{
     	display: inline-block;
     	float: left;

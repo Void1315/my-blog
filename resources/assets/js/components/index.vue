@@ -5,7 +5,9 @@
 		<div :class="['right-content',{'long':contentLong,'short':contentShort}]">
 			<my-header>
 			</my-header>
-			<router-view></router-view>
+			<router-view>
+				
+			</router-view>
 		</div>
 		<to-top></to-top>
 	</div>

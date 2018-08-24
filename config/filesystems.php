@@ -52,14 +52,14 @@ return [
             'root' => storage_path('app/public/image'),
             'visibility' => 'public',
             'url' => env('APP_URL').'/storage/app/pulbic/image',
-            'path' => "/storage/app/public/image/"
+            'path' => "/storage/image/"
         ],
         'zip_img' => [
             'driver' => 'local',
             'root' => storage_path('app/public/zip_image'),
             'visibility' => 'public',
             'url' => env('APP_URL').'/storage/app/public/zip_image',
-            'path' => "/storage/app/public/zip_image/"
+            'path' => "/storage/zip_image/"
         ],
         'public' => [
             'driver' => 'local',

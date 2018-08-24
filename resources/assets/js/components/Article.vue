@@ -8,33 +8,23 @@
 				</el-col>
 				<div class="head-box">
 					<p class="title">
-						Le Petit Prince
+						{{data.title}}
 					</p>
 				</div>
 				<div class="data-box">
 					<i class="fa fa-calendar-plus-o"></i>
 					<span>
-						2018-08-14 22:45
+						{{data.created_at}}
 					</span>
 				</div>
 			</el-row>
+				<el-row >
+					<el-col :md="{span:18,offset:3}">
+						<img :src="data.img_url" class="article-img-box">
+					</el-col>
+				</el-row>
 			<el-row>
-				<el-col :md="{span:18,offset:3}" :xs="{span:24,offset:0}" class="text-box" >
-					
-					<p>asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd</p>
-					<p>asdasd</p>
-					<p>asdasd</p>
-					<p>asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd</p>
-					<p>asdasd</p>
-					<p>asdasd</p>
-					<hr>
-					<p>asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd</p>
-					<p>asdasd</p>
-					<p>asdasd</p>
-					<p>asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd</p>
-					<p>asdasd</p>
-					<p>asdasd</p>
-					
+				<el-col :md="{span:18,offset:3}" :xs="{span:24,offset:0}" class="text-box" v-html="data.text">	
 				</el-col>
 			</el-row>
 			<el-row>
@@ -44,23 +34,19 @@
 			</el-row>
 			<el-row type="flex" class="bottom-icon-box" justify="space-between">
 				<div class="lable-box" >
-					<div class="lable-item">
+					<div class="tag-item" v-for="tag in data.tages">
 						<i class="fa fa-tag"></i>
-						<span>PHP</span>
-					</div>
-					<div class="lable-item">
-						<i class="fa fa-tag"></i>
-						<span>Java</span>
+						<span>{{ tag.name }}</span>
 					</div>
 				</div>
 				<div class="like-box" >
-					<div class="lable-item">
+<!-- 					<div class="lable-item">
 						<i class="fa fa-thumbs-o-down"></i>
 						<span>0</span>
-					</div>
+					</div> -->
 					<div class="lable-item">
 						<i class="fa fa-thumbs-o-up"></i>
-						<span>999+</span>
+						<span>{{ data.assent }}</span>
 					</div>
 					<div class="lable-item">
 						<i class="fa fa-share-alt"></i>
@@ -78,17 +64,35 @@
 	module.exports={
 	    data:function(){
 	     	return{
-	     		
+	     		data:'',
 	    	}
-	 	}
+	 	},
+	 	methods:{
+	 		getData(){
+	 			var self = this;
+	 			this.$ajax.get("/article/get/"+this.$route.params.id).then(function(response){
+	 				 self.data = response.data;
+	 			})
+	 		}
+	 	},
+	 	mounted:function(){
+	 		var self = this;
+			this.$nextTick(function () {
+				self.getData()
+				console.log(self.data)
+			})
+	 	},
   	}
 </script>
 <style lang="scss" scoped="true" type="text/css">
 @import "../../sass/app.scss";
-
+.article-img-box{
+	height: auto;
+	width: 100%;
+    display: block;
+}
 .article-box{
 	width: 90%;
-	box-shadow: $clear-love-shadow;
 	border-radius: 3px;
 	border: $border-style;
     margin: 20px auto;

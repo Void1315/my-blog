@@ -39,4 +39,13 @@ class ArticleController extends Controller
    		$this->a_tModel->articleTag($id,$id_list);
    		return "200!";
     }
+
+    public function indexOverView(){
+      return $this->articleModel->overView();
+    }
+
+    public function articleGet(Request $request){
+      return $this->articleModel->oneView($request->id);
+    }
+
 }

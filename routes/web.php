@@ -22,6 +22,8 @@ Route::namespace('Blog')->group(function () {
     // 在 "App\Http\Controllers\Blog" 命名空间下的控制器
 	Route::post('/create/article','ArticleController@create');
 	Route::post("/create/image",'ImageController@create');
+	Route::get("/article/overview","ArticleController@indexOverView");
+	Route::get("/article/get/{id}","ArticleController@articleGet");
 	Route::get("/admin/article/list","ArticleController@index");
 });
 Route::get("/",function(){

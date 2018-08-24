@@ -5,13 +5,13 @@
 				</div>
 				<div class="head-box">
 					<p class="title">
-						Le Petit Prince
+						{{article.title}}
 					</p>
 				</div>
 				<div class="data-box">
 					<i class="fa fa-calendar-plus-o"></i>
 					<span>
-						2018-08-14 22:45
+						{{article.created_at}}
 					</span>
 				</div>
 		</el-row>
@@ -20,46 +20,28 @@
 			<el-col :span="6" :offset="1" :xs="{span:24,offset:0}">
 				<div class="img-box">
 					<div class="img-shadow">
-						<img src="img/article.jpg">
+						<img :src="article.img_url">
 					</div>
 				</div>
 			</el-col>
 			<el-col :span="12" :offset="2" :xs="{span:24,offset:0}">
 				<div class="info-box">
-					<a href="/#/article">
-						<p>有次潘子喝醉了，突然说，“你知道吗，魔礼海按的是一个Am和弦。”</p>
-						<p>我说：“魔个头，不如魔力红。”</p>
-						<p>潘子说：“我跟你讨论宗教时能不能正经点？”</p>
-						<p>我心想，干，Am和弦很正经吗？人家弹的还是一琵琶…</p>
-						<p>我好久没见潘子了，不过我见到了魔礼海。在西宁塔尔寺，青海游的第一站。</p>
-						<p>我好久没见潘子了，不过我见到了魔礼海。在西宁塔尔寺，青海游的第一站。我好久没见潘子了，不过我见到了魔礼海。在西宁塔尔寺，青海游的第一站。我好久没见潘子了，不过我见到了魔礼海。在西宁塔尔寺，青海游的第一站。我好久没见潘子了，不过我见到了魔礼海。在西宁塔尔寺，青海游的第一站。</p>
+					<a :href="'/#/article/'+article.id" v-html="article.text">
 					</a>
 				</div>
 			</el-col>
 		</el-row>
 		<el-row type="flex" class="icon-box" justify="space-between">
 			<div class="lable-box">
-					<div class="tag-item">
-						<i class="fa fa-tag"></i>
-						<span>Java</span>
-					</div>
-					<div class="tag-item">
-						<i class="fa fa-tag"></i>
-						<span>Java</span>
-					</div>
-					<div class="tag-item">
-						<i class="fa fa-tag"></i>
-						<span>Java</span>
-					</div>
+				<div class="tag-item" v-for="tag in article.tages">
+					<i class="fa fa-tag"></i>
+					<span>{{ tag.name }}</span>
 				</div>
+			</div>
 			<div class="like-box">
 				<div class="like">
-					<i class="fa fa-thumbs-o-down"></i>
-					<span>0</span>
-				</div>
-				<div class="like">
 					<i class="fa fa-thumbs-o-up"></i>
-					<span>999+</span>
+					<span>{{article.assent}}</span>
 				</div>
 			</div>
 		</el-row>
@@ -69,9 +51,12 @@
 
 <script type="text/javascript">
 	export default {
+		props: {
+            article: ''
+        },
 	    data:function(){
 	     	return{
-	     		
+
 	    	}
 	 	}
 	}
@@ -95,7 +80,7 @@
 		img{
 		    height: auto;
 	    	width: 100%;
-	    	
+    	    display: block;
 		}
 	}
 }
@@ -109,6 +94,7 @@
 		i{
 			color:black;
 			font-size: 1em;
+		    margin-right: 4px;
 		}
 		span{
 			font-size: 1em;
@@ -124,6 +110,10 @@
     }
     p{
     	word-break: break-word;
+    	margin-top: 0px;
+	    font-size: 15px;
+    	font-weight: 500;
+	    line-height: 20px;
     }
 }
 
