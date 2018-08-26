@@ -48,4 +48,10 @@ class ArticleController extends Controller
       return $this->articleModel->oneView($request->id);
     }
 
+    public function assent(Request $request){
+      $theArticle = $this->articleModel->find($request->id);
+      $theArticle->assent = $theArticle->assent+1;
+      $theArticle->save();
+      return "200";
+    }
 }

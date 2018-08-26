@@ -84,6 +84,10 @@ const routes = [
     redirect: "/"
   },
   {
+    path:'/login',
+    component:resolve=>require(["./components/login.vue"], resolve),
+  },
+  {
     path:"/admin",
     component: resolve=>require(["./components/admin/AdminIndex.vue"], resolve),
     children:[{
@@ -99,6 +103,21 @@ const routes = [
 ];
 const router = new VueRouter({
   routes // (缩写) 相当于 routes: routes
+})
+router.beforeEach((to, from, next) => {
+  if(to.path=="/admin"||(to.matched.lenght!=undefined&&to.matched[0].path=="/admin")){
+    if(sessionStorage.getItem("check"))
+      next()
+    axios.get("/check").then(function(res){
+      if(res.data=="200"){
+        sessionStorage.setItem("check", true);
+        next()
+      }
+      else
+        next({ path: '/login' })
+    })
+  }else
+    next()
 })
 const app = new Vue({
     el: '#app',

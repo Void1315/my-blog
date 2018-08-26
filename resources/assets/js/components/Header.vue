@@ -113,7 +113,7 @@
 	.header-box{
 		height: 65px;
 		border-bottom: $border-style;
-		background-color: $back-color;
+	    background-color: white;
 	}
 	.item-box{
 		width: auto;

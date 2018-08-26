@@ -34,7 +34,7 @@
 			</el-row>
 			<el-row type="flex" class="bottom-icon-box" justify="space-between">
 				<div class="lable-box" >
-					<div class="tag-item" v-for="tag in data.tages">
+					<div class="tag-item on-cursor" v-for="tag in data.tages" >
 						<i class="fa fa-tag"></i>
 						<span>{{ tag.name }}</span>
 					</div>
@@ -44,7 +44,7 @@
 						<i class="fa fa-thumbs-o-down"></i>
 						<span>0</span>
 					</div> -->
-					<div class="lable-item">
+					<div class="lable-item on-cursor" @click="toAssent">
 						<i class="fa fa-thumbs-o-up"></i>
 						<span>{{ data.assent }}</span>
 					</div>
@@ -54,13 +54,11 @@
 				</div>
 			</el-row>
 			<div class="comment-box">
-				<div id="SOHUCS" sid="7" ></div> 
+				<div id="SOHUCS" v-bind:sid="$route.params.id" ></div> 
 			</div>
 		</div>
 	</div>
 </template>
-<script type="text/javascript"> 
-				 </script>
 <script>
 	module.exports={
 	    data:function(){
@@ -74,6 +72,27 @@
 	 			this.$ajax.get("/article/get/"+this.$route.params.id).then(function(response){
 	 				 self.data = response.data;
 	 			})
+	 		},
+	 		toAssent(){
+	 			isAssent = "isAssent"
+	 			var self = this
+	 			if(document.cookie.indexOf(isAssent + "=") == -1)
+	 			{
+	 				document.cookie = isAssent + "=true";
+	 				this.$ajax.post("/article/assent",{
+	 					id:this.$route.params.id,
+	 					_token:document.getElementsByTagName('meta')['csrf-token'].getAttribute('content'),
+	 				}).then(function(res){
+	 					if(res.data == "200"){
+	 						self.$message.success("谢谢你喜欢这篇文章!");
+	 						self.data.assent+=1
+	 					}
+	 					else
+	 						self.$message("出现了一些错误请稍后再试!");
+	 				})
+	 			}else{
+	 				this.$message.warning(" 你已经点过赞了!");
+	 			}
 	 		}
 	 	},
 	 	mounted:function(){
@@ -81,14 +100,23 @@
 			this.$nextTick(function () {
 				self.getData();
 				console.log(self.data);
-				(function(){ 
-				var appid = 'cytMq1XyR'; 
-				var conf = 'prod_8abf39185ea6bc48f81b87e55d3de736'; 
-				var width = window.innerWidth || document.documentElement.clientWidth; 
-				if (width < 960) { 
-				window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })();
+				
 			})
 	 	},
+	 	beforeMount:function(){
+	 		(function(){ 
+				var appid = 'cytMq1XyR'; 
+				var conf = 'prod_8abf39185ea6bc48f81b87e55d3de736'; 
+				var width = window.innerWidth || document.documentElement.clientWidth;
+				console.log(width)
+				if (width < 960) { 
+					var script = document.createElement("script");
+				    script.src = 'https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '';
+				    script.id = "changyan_mobile_js"
+				    script.charset="utf"
+				    document.head.appendChild(script);} else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })();
+
+	 	}
   	}
 </script>
 <style lang="scss" scoped="true" type="text/css">

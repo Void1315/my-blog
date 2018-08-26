@@ -20,11 +20,17 @@ Auth::routes();
 // Route::get('/home', 'HomeController@index')->name('home');
 Route::namespace('Blog')->group(function () {
     // 在 "App\Http\Controllers\Blog" 命名空间下的控制器
-	Route::post('/create/article','ArticleController@create');
-	Route::post("/create/image",'ImageController@create');
 	Route::get("/article/overview","ArticleController@indexOverView");
 	Route::get("/article/get/{id}","ArticleController@articleGet");
+	Route::post("/login","UserController@login");
+	Route::any("/check","UserController@checkUser");
+	Route::get("/yhy1315/init","UserController@init");
+	Route::post("/article/assent","ArticleController@assent");
+});
+Route::middleware(['auth'])->namespace('Blog')->group(function(){
 	Route::get("/admin/article/list","ArticleController@index");
+	Route::post('/create/article','ArticleController@create');
+	Route::post("/create/image",'ImageController@create');
 });
 Route::get("/",function(){
 	return view('index');
