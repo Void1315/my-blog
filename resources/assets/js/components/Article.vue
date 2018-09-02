@@ -99,7 +99,6 @@
 	 		var self = this;
 			this.$nextTick(function () {
 				self.getData();
-				console.log(self.data);
 				
 			})
 	 	},

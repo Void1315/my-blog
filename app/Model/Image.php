@@ -9,11 +9,12 @@ class Image extends Model
     //
 	public $zipPath;
 
-	public function createArticleImage($img){
+	public function createArticleImage($img,$show){
 		$this->zipPath = config('filesystems.disks.zip_img.root');
 		$urlList = $this->saveZipImg($img);
 		$this->zip_url = $urlList[0];
 		$this->url = $urlList[1];
+		$this->to_show = $show;
 		$this->save();
 		return $this->id;
 	}
@@ -28,9 +29,21 @@ class Image extends Model
 		return array($zip_path,$savepath);
 	}
 
-	public function create($img){
-		return $this->createArticleImage($img);
+	public function create($img,$show){
+		return $this->createArticleImage($img,$show);
 		// return "200!";
 	}
 
+	public function setItems($item_id,$id_list){
+		foreach ($id_list as $id) {
+			$this->setItem($item_id,$id);
+		}
+		return true;
+	}
+
+	public function setItem($item_id,$id){
+		$model = $this->find($id);
+		$model->item_id = $item_id;
+		$model->save();
+	}
 }

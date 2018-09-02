@@ -78,6 +78,7 @@
 				},
 				img_data:{
 					"_token":document.getElementsByTagName('meta')['csrf-token'].getAttribute('content'),
+					"show":0
 				},
 				inputVisible: false,
         		inputValue: '',

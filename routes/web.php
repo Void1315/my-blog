@@ -24,13 +24,17 @@ Route::namespace('Blog')->group(function () {
 	Route::get("/article/get/{id}","ArticleController@articleGet");
 	Route::post("/login","UserController@login");
 	Route::any("/check","UserController@checkUser");
-	Route::get("/yhy1315/init","UserController@init");
 	Route::post("/article/assent","ArticleController@assent");
+	Route::get("/image/item","ImageController@showItem");
+
+	
+	Route::get("/yhy1315/init","UserController@init");
 });
 Route::middleware(['auth'])->namespace('Blog')->group(function(){
 	Route::get("/admin/article/list","ArticleController@index");
 	Route::post('/create/article','ArticleController@create');
 	Route::post("/create/image",'ImageController@create');
+	Route::post("/create/imgitem","ImageController@createItem");
 });
 Route::get("/",function(){
 	return view('index');

@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string("name",50);
             $table->string('email',50);
-            $table->text("remember_token")->default(null);
+            $table->text("remember_token")->nullable();
             $table->text("password");
             $table->string("info");
             $table->string("sex",5);

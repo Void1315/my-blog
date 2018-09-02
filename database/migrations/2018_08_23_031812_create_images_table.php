@@ -17,6 +17,8 @@ class CreateImagesTable extends Migration
             $table->increments('id');
             $table->string('url');
             $table->string('zip_url');
+            $table->boolean('to_show')->default(0);
+            $table->integer("item_id")->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

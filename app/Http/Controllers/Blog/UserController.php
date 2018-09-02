@@ -36,7 +36,7 @@ class UserController extends Controller
     	$this->userModel->sex = "男";
     	$this->userModel->info_text = "aaa";
     	$this->userModel->save();
-    	return true;
+    	return "true";
     }
 
     public function checkUser(){

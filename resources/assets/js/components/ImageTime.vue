@@ -1,14 +1,14 @@
 <template>
 	<div class="content">
 		<timeline>
-		    <div v-for="(items,index) in testJson">
+		    <div v-for="(items,index) in testData">
 		    	<timeline-title>{{items.data}} </timeline-title>
 			    <timeline-item bg-color="#9dd8e0" v-for="(part,index1) in items.items">
 			    	<div class="image-time-data">
 			    		<p>{{part.itemData}}</p>
 			    	</div>
 			    	<div class="image-time-box" v-for="(url,index2) in part.partImg">
-			    		<img class="preview-img" v-bind:preview="index+''+index1" v-bind:src="url.url" >
+			    		<img class="preview-img" v-bind:preview="index+''+index1" v-bind:src="url.url" v-preview="url.zip_url">
 			    	</div>
 			    	<div class="image-time-text">
 			    		<p>
@@ -19,7 +19,6 @@
 
 		    </div>
 		</timeline>
-		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 	</div>
 </template>
 <script type="text/javascript">
@@ -28,50 +27,8 @@ export default{
     data:function(){
      	return{
      		pre_item:0,
-     		testJson:[{
-     			data:"2017-08",
-     			items:[{
-     					itemData:"08-19",
-     					partImg:[
-     						{url:"img/article.jpg"},
-     						{url:"img/article.jpg"},
-     						{url:"img/article.jpg"}
-     					],
-     					text:"这是一个阶段总结"
-     				},
-     				{
-     					itemData:"08-24",
-     					partImg:[
-     						{url:"img/article.jpg"},
-     						{url:"img/article.jpg"},
-     						{url:"img/article.jpg"}
-     					],
-     					text:"这是另一个阶段总结"
-     				}
-     			]
-     		},
-     		{
-     			data:"2017-04",
-     			items:[{
-     					itemData:"04-19",
-     					partImg:[
-     						{url:"img/article.jpg"},
-     						{url:"img/article.jpg"},
-     						{url:"img/article.jpg"}
-     					],
-     					text:"这是一个阶段总结"
-     				},
-     				{
-     					itemData:"04-24",
-     					partImg:[
-     						{url:"img/article.jpg"},
-     						{url:"img/article.jpg"},
-     						{url:"img/article.jpg"}
-     					],
-     					text:"这是另一个阶段总结"
-     				}]
-     		}],
-    	}
+            testData:[],
+        }
  	},
  	components: {
 	    Timeline,
@@ -79,14 +36,57 @@ export default{
 	    TimelineTitle
 	},
 	created:function(){
-		// console.log(this.$ajax)
 
 	},
 	methods:{
 		handleClose:function(){
 			console.log(1)
-		}
-	}
+		},
+        getData:function(){
+            var self = this;
+            this.$ajax.get("/image/item").then(function(res){
+                self.setData(res.data)
+            }).catch(function(res){
+                self.$message.error('出现了某些错误，请稍后再试！');
+                console.log(res)
+            });
+        },
+        setData:function(data){
+            // console.log(data)
+            for(var i=0;i<data.length;i++){
+                var b_auto = true
+                var item_time = new Date(String(data[i].created_at))
+                var year = item_time.getFullYear();
+                var month = item_time.getMonth()>10?item_time.getMonth()+1:"0"+(item_time.getMonth()+1);
+                var day = item_time.getDate()>10?item_time.getDate():"0"+item_time.getDate();
+                var one_item = year+"-"+month
+                var one_time = month+"-"+day
+                var item_data = {};
+                item_data.itemData = one_time
+                item_data.partImg = data[i].images
+                item_data.text = data[i].info
+                
+                for(var j=0;j<this.testData.length;j++){
+                    if(this.testData[j].data == one_item){
+                        this.testData[j].items.push(item_data)
+                        b_auto = false
+                    }
+                    
+                }
+                // if(this.testData.length==0)
+                //     this.testData.push({data:one_item,items:[item_data]})
+                if(b_auto)
+                    this.testData.push({data:one_item,items:[item_data]})
+            
+            }        
+        },
+	},
+    mounted:function(){
+        var self = this;
+        this.$nextTick(function () {
+            self.getData()
+        })
+    },
 }
 </script>
 <style lang="scss" scoped="true" type="text/css">

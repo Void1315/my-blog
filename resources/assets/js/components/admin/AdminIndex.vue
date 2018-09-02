@@ -36,7 +36,7 @@
 					        <span slot="title">图片</span>
 				        </template>
 				        <el-menu-item-group>
-				          <el-menu-item index="2-1">上传图片</el-menu-item>
+				          <el-menu-item index="/admin/image/upload">上传图片</el-menu-item>
 				          <el-menu-item index="2-2">管理图片</el-menu-item>
 				        </el-menu-item-group>
 				      </el-submenu>

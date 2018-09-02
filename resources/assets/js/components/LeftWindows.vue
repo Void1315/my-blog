@@ -57,7 +57,6 @@
 						</div>
 					</div>
 				</div>
-				<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 			</div>
 			
 		</transition>
@@ -98,8 +97,11 @@
  	created:function(){
  		var this_ = this
 		window.addEventListener("touchmove", function(event){
-			if(Math.abs(this_.touchY-event.touches[0].clientY)<150)//在屏幕上瞎画不会出左窗口
-				this_.show = event.touches[0].clientX - this_.touchX>150?true:false;
+			if(Math.abs(this_.touchY-event.touches[0].clientY)<150)
+			if(event.touches[0].clientX - this_.touchX>150)
+				this_.show = true;
+			else if(this_.touchX - event.touches[0].clientX>150)
+				this_.show = false;
         });
         window.addEventListener("touchstart",function(event){
         	this_.touchX = event.touches[0].clientX;
@@ -107,7 +109,6 @@
         });
         this.phoneHiddenLeft();
  	}
- 	
   }
 
 </script>

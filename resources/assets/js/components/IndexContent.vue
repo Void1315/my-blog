@@ -19,7 +19,6 @@
 	 			var self = this;
 	 			this.$ajax.get("/article/overview").then(function(response){
 	 				self.data = response.data;
-	 				console.log(self.data)
 	 			})
 	 		}
 	 	},
