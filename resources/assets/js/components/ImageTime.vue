@@ -1,20 +1,21 @@
 <template>
 	<div class="content">
+        <vue-preview :slides="slide1" @close="handleClose"></vue-preview>
 		<timeline>
 		    <div v-for="(items,index) in testData">
 		    	<timeline-title>{{items.data}} </timeline-title>
-			    <timeline-item bg-color="#9dd8e0" v-for="(part,index1) in items.items">
-			    	<div class="image-time-data">
-			    		<p>{{part.itemData}}</p>
-			    	</div>
-			    	<div class="image-time-box" v-for="(url,index2) in part.partImg">
-			    		<img class="preview-img" v-bind:preview="index+''+index1" v-bind:src="url.url" v-preview="url.zip_url">
-			    	</div>
-			    	<div class="image-time-text">
-			    		<p>
-			    			{{part.text}}
-			    		</p>
-			    	</div>
+			    <timeline-item bg-color="#9dd8e0" v-for="(part,index1) in items.items" v-viewer="{title:false,movable:false,url:getUrl}">
+    			    	<div class="image-time-data">
+    			    		<p>{{part.itemData}}</p>
+    			    	</div>
+    			    	<div class="image-time-box" v-for="(url,index2) in part.partImg">
+                                <img v-bind:src="url.zip_url">
+    			    	</div>
+    			    	<div class="image-time-text">
+    			    		<p>
+    			    			{{part.text}}
+    			    		</p>
+    			    	</div>
 				</timeline-item>
 
 		    </div>
@@ -39,6 +40,9 @@ export default{
 
 	},
 	methods:{
+        getUrl:function(image){
+            return image.src.replace('zip_image', 'image');
+        },
 		handleClose:function(){
 			console.log(1)
 		},
@@ -79,6 +83,12 @@ export default{
                     this.testData.push({data:one_item,items:[item_data]})
             
             }        
+        },
+        checkUrl:function(event){
+            var self = this
+            var url = event.currentTarget.src;
+            event.currentTarget.src = url.replace("zip_image","image")
+            console.log(111)
         },
 	},
     mounted:function(){

@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "element-ui": "^2.4.6",
-    "vue-photo-preview": "^1.0.9",
-    "wangeditor": "^3.1.1"
+    "wangeditor": "^3.1.1",
+    "v-viewer": "^1.2.1"
   }
 }

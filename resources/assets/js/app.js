@@ -38,12 +38,18 @@ import 'element-ui/lib/theme-chalk/base.css';
 // import CollapseTransition from 'element-ui/lib/transitions/collapse-transition';
 // Vue.component(CollapseTransition.fade, CollapseTransition)
 
-import preview from 'vue-photo-preview'
-import 'vue-photo-preview/dist/skin.css'
+// import preview from 'vue-photo-preview'
+// import 'vue-photo-preview/dist/skin.css'
+// Vue.use(preview);
+
+
+import 'viewerjs/dist/viewer.css'
+import Viewer from 'v-viewer'
+Vue.use(Viewer)
 
 import wangEditor from 'wangeditor'
 
-Vue.use(preview);
+
 Vue.prototype.$ajax = axios;
 Vue.use(VueRouter);
 Array.prototype.indexOf = function (val) {

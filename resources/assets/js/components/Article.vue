@@ -1,6 +1,6 @@
 <template>
 	<div class="content">
-		<div class="article-box">
+		<div class="article-box" v-viewer="{title:false,movable:false,url:getUrl}">
 			<el-row>
 				<el-col :span="4" :lg="{span:2}">
 					<div class="side-triangle article-triangle">
