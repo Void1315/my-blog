@@ -12,10 +12,15 @@ class ArticleTag extends Model
 
     public function articleTag($article_id,$tages_id){
     	foreach ($tages_id as $tag_id) {
-    		$this->article_id = $article_id;
-    		$this->tag_id = $tag_id;
-    		$this->save();
+            $model = new ArticleTag;
+    		$model->article_id = $article_id;
+    		$model->tag_id = $tag_id;
+    		$model->save();
     	}
+    }
+
+    public function deleteWithAid($id){
+        $this->where("article_id",$id)->delete();
     }
 
 }

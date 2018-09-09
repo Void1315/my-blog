@@ -28,16 +28,17 @@
 					  @close="handleClose(tag)">
 					  {{tag}}
 					</el-tag>
-					<el-input
+					<el-autocomplete
 					  class="input-new-tag"
 					  v-if="inputVisible"
 					  v-model="inputValue"
 					  ref="saveTagInput"
 					  size="small"
+					  :fetch-suggestions="querySearch"
+					  @select="handleSelect"
 					  @keyup.enter.native="handleInputConfirm"
-					  @blur="handleInputConfirm"
 					>
-					</el-input>
+					</el-autocomplete>
 					<el-button v-else class="button-new-tag" size="small" @click="showInput">+ New Tag</el-button>
 				  </el-form-item>
 				  <el-form-item prop="fileList">
@@ -57,8 +58,9 @@
 					</el-upload>
 				  </el-form-item>
 				    <el-form-item>
-					    <el-button type="primary" @click="submitForm('form')">提交</el-button>
-					    <el-button @click="resetForm('form')">重置</el-button>
+					    <el-button v-if="!this.$route.params.id" type="primary" @click="submitForm()">提交</el-button>
+					    <el-button v-else @click="editForm('form')">修改</el-button>
+					    <el-button type="danger" @click="resetForm()">重置</el-button>
 					</el-form-item>
 			</el-form>
 		</div>
@@ -74,7 +76,8 @@
 					title:'',
 					text:this.editorContent,
 					tages:[],
-					img_id:this.img_id
+					img_id:this.img_id,
+					fileList:[]
 				},
 				img_data:{
 					"_token":document.getElementsByTagName('meta')['csrf-token'].getAttribute('content'),
@@ -87,15 +90,45 @@
 		},
 		mounted:function () {
 			var self = this;
+			this.loadAll();
 			this.$nextTick(function () {
 				self._token = document.getElementsByTagName('meta')['csrf-token'].getAttribute('content')
 		        this.$nextTick(function () {
 				    self.editor = new wangEditor('#editor-tool','#editor-trigger');
+				    self.editor.customConfig.uploadImgServer = '/upload/image'
+				    self.editor.customConfig.debug = true
+				    self.editor.customConfig.uploadImgParams ={
+				    	"_token":document.getElementsByTagName('meta')['csrf-token'].getAttribute('content'),
+				    }
+				    self.editor.customConfig.uploadFileName = 'image'
+				    self.editor.customConfig.customAlert = function (info) {
+					    self.$message.error(info)
+					}
+					self.editor.customConfig.uploadImgHooks ={
+						success:function(xhr, editor, result){
+							console.log(xhr,result)
+						}
+					}
+
 		            self.editor.customConfig.onchange = function(){
 						self.editorContent = self.editor.txt.html();
 						self.form.text = self.editorContent;
 					}
 		            self.editor.create();
+		            if(self.$route.params.id){
+		            	var id = self.$route.params.id
+		            	self.$ajax.get("/article/get/"+id).then(function(res){
+		            		for(var i=0;i<res.data.tages.length;i++){
+		            			self.form.tages.push(res.data.tages[i].name)
+		            		}
+		            		self.form.title = res.data.title;
+		            		self.editorContent = res.data.text;
+		            		self.form.text = res.data.text;
+		            		self.editor.txt.html(res.data.text)
+		            		self.form.img_id = res.data.img_id;
+		            		self.form.fileList.push({name:'封面',url:res.data.img_url})
+		            	})
+		            }
 				})
 		    })
     	},
@@ -110,11 +143,42 @@
 		          this.$refs.saveTagInput.$refs.input.focus();
 		        });
 			},
+			querySearch(queryString, cb) {
+		        var restaurants = this.restaurants;
+		        var results = queryString ? restaurants.filter(this.createFilter(queryString)) : restaurants;
+		        // 调用 callback 返回建议列表的数据
+		        cb(results);
+		    },
+		    createFilter(queryString) {
+		        return (restaurant) => {
+		          return (restaurant.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0);
+		        };
+		    },
+		    loadAll() {
+		    	var data;
+		    	var arr = [];
+		    	var self = this;
+		        this.$ajax.get("/admin/type/list").then(function(res){
+		        	data = res.data;
+		        	for (var i=0;i<res.data.length;i++) {
+		        		var item = {"value":res.data[i].name}
+					    arr.push(item); //属性
+					}
+					self.restaurants = arr
+		        });
 
+		    },
+		    handleSelect(item) {
+				this.handleInputConfirm(); 
+		    },
 		    handleInputConfirm() {
 		        let inputValue = this.inputValue;
 		        if (inputValue) {
-		          this.form.tages.push(inputValue);
+		        	if(this.form.tages.indexOf(inputValue)==-1)
+		          		this.form.tages.push(inputValue);
+		          	else{
+		          		this.$message("已经添加过此标签！");
+		          	}
 		        }
 		        this.inputVisible = false;
 		        this.inputValue = '';
@@ -125,10 +189,12 @@
 		    tipLimit(){
 		    	this.$message('只能上传一张封面文件!');
 		    },
-		    resetForm(formName){
+		    resetForm(){
 		    	this.$refs['form'].resetFields();
+		    	this.editorContent = ""
+		    	this.editor.txt.html("")
 		    },
-		    submitForm(formName){
+		    submitForm(){
 		    	var self = this;
 		    	this.$ajax({
 		    		method:'post',
@@ -139,8 +205,21 @@
 			          message: '文章上传成功！',
 			          type: 'success'
 			        });
-				    self.$refs['form'].resetFields();
+				    self.resetForm();
 				  	})
+		    },
+		    editForm(){
+		    	var self = this;
+		    	this.$ajax({
+		    		method:'post',
+		    		url:"/edit/article/"+this.$route.params.id,
+		    		data:this.form
+		    	}).then(function(res){
+		    		self.$message({
+			          message: '文章修改成功！',
+			          type: 'success'
+			        });
+		    	})
 		    },
 		    imgUpload(response){
 		    	this.img_id = response;

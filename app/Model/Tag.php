@@ -12,10 +12,16 @@ class Tag extends Model
     public function createTages($tages){
         $id_list = array();
     	foreach($tages as $tag){
-    		$this->name = $tag;
-    		$this->save();
-            array_push($id_list,$this->id);
+            $model = new Tag;
+            if($this->where("name",$tag)->first())
+                array_push($id_list,$this->where("name",$tag)->first()->id);
+            else{
+                $model->name = $tag;
+                $model->save();
+                array_push($id_list,$model->id); 
+            }
     	}
     	return $id_list;
     }
+
 }

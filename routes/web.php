@@ -32,9 +32,13 @@ Route::namespace('Blog')->group(function () {
 });
 Route::middleware(['auth'])->namespace('Blog')->group(function(){
 	Route::get("/admin/article/list","ArticleController@index");
+	Route::get("/admin/image/list","ImageController@listShow");
+	Route::get("/admin/type/list","TagController@show");
 	Route::post('/create/article','ArticleController@create');
+	Route::post("/edit/article/{id}","ArticleController@edit");
 	Route::post("/create/image",'ImageController@create');
 	Route::post("/create/imgitem","ImageController@createItem");
+	Route::post("/upload/image","ImageController@upload");
 });
 Route::get("/",function(){
 	return view('index');

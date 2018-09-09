@@ -1,12 +1,16 @@
 <template>
 	<div class="header-box">
-		<div class="search-box">
+		<div class="search-box" v-bind:class="{active:b_focus}">
 			<div>
-				<input type="text" name="">
+				<input  type="text" name="" @focus="onfocus" @blur="onblur">
 			</div>
-			<i class="fa fa-search"></i>
+			<i class="fa fa-search on-cursor"  v-bind:class="{i_active:b_focus}"></i>
 		</div>
 		<div class="item-box">
+			<div class="head-img-box on-cursor" @click="back">
+				<i class="fa fa-mail-reply"></i>
+				<span class="hidden-md-and-down">Back</span>
+			</div>
 			<div class="head-home-box">
 				<a href="/#/">
 					
@@ -29,8 +33,21 @@
 	export default {
      data:function(){
      	return{
-     		
+     		b_focus :false,
     	}
+ 	},
+ 	methods:{
+ 		back:function(){
+ 			this.$router.go(-1);
+ 		},
+ 		onfocus:function(){
+ 			this.b_focus=true;
+ 			console.log(this.b_focus)
+ 		},
+ 		onblur:function(){
+ 			this.b_focus = false;
+ 			console.log(this.b_focus)
+ 		}
  	}
   }
 </script>
@@ -44,6 +61,12 @@
 		background-color: $c-color;
     	justify-content: space-between;
 
+	}
+	.active{
+		width: 430px !important;
+	}
+	.i_active{
+		left:440px !important;
 	}
 	.search-box{
 		position: relative;
@@ -64,6 +87,7 @@
 	    opacity: 1;
 	    transform: rotate(0deg);
 	    color: black;
+	    transition: .5s ease;
 	    input{
     	    padding: 0 8px;
 		    display: block;
@@ -84,6 +108,7 @@
 		    resize: none;
 	    }
 		i{
+			transition: .5s ease;
 		    position: relative;
 		    left: 195px;
 		    top: 7px;
@@ -93,7 +118,7 @@
 	.item-box{
 	    position: relative;
     	right: 40px;
-	    width: 280px;
+	    width: 380px;
 	    display: flex;
 	    justify-content: space-between;
 		a{
@@ -125,8 +150,9 @@
 	}
 	.search-box{
 		left:10px;
+		width: 190px;
 		i{
-			left:195px;
+			left:160px;
 		}
 	}
 }

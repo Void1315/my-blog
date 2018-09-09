@@ -16,7 +16,7 @@ class CreateImagesTable extends Migration
         Schema::create('images', function (Blueprint $table) {
             $table->increments('id');
             $table->string('url');
-            $table->string('zip_url');
+            $table->string('zip_url')->nullable();
             $table->boolean('to_show')->default(0);
             $table->integer("item_id")->nullable();
             $table->softDeletes();

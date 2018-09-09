@@ -125,7 +125,11 @@ a{
     }
 
 }
-
+.table-img{
+    width: 100%;
+    max-width: 200px;
+    height:auto;
+}
 @media #{$medie-type} and (max-width: $phone-size){
 	.content{
 	    border-radius: 0;

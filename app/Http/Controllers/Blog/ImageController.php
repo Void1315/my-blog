@@ -41,4 +41,16 @@ class ImageController extends Controller
         return $data;
     }
 
+    public function listShow(){
+        return $this->imageModel->all();
+    }
+
+    public function upload(Request $request){
+        $this->validate($request,[
+            "image" => "required|image"
+        ]);
+        $arr_url = $this->imageModel->saveInsertImg($request->image,0)->url;
+        return json_encode(array("errno"=>0,"data"=>array($arr_url)));
+    }
+
 }

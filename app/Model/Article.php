@@ -23,6 +23,15 @@ class Article extends Model
         return $this->hasOne('App\Model\Image', 'id', 'img_id');
     }
 
+    public function edit($id,$title,$text,$img_id){
+        $model = $this->find($id);
+        $model->title = $title;
+        $model->text = $text;
+        $model->img_id = $img_id;
+        $model->save();
+        return true;
+    }
+
     public function overView(){
         return $this->all()->each(function($item, $key){
             $item->img_url = Image::find($item->img_id)->zip_url;

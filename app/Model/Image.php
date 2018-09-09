@@ -29,6 +29,12 @@ class Image extends Model
 		return array($zip_path,$savepath);
 	}
 
+	public function saveImg($img){
+		$path = Storage::disk('img')->putFile('',$img);
+		$savepath = config('filesystems.disks.img.path').$path;
+		return $savepath;
+	}
+
 	public function create($img,$show){
 		return $this->createArticleImage($img,$show);
 		// return "200!";
@@ -39,6 +45,14 @@ class Image extends Model
 			$this->setItem($item_id,$id);
 		}
 		return true;
+	}
+
+	public function saveInsertImg($img,$show){
+		$path = $this->saveImg($img);
+		$this->url = $path;
+		$this->to_show = $show;
+		$this->save();
+		return $this;
 	}
 
 	public function setItem($item_id,$id){

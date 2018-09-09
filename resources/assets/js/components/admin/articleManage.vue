@@ -15,6 +15,14 @@
 		        >
 	      	</el-table-column>
 	      	<el-table-column
+		    	label="封面"
+		    	prop="image"
+		    >
+		    	<template slot-scope="scope">
+		    		<img :src="scope.row.image.url" class="table-img">
+		      	</template>
+		    </el-table-column>
+	      	<el-table-column
 		        prop="assent"
 		        label="顶"
 		        sortable
@@ -27,6 +35,7 @@
 		        :formatter="formatter"
 		        >
 	      	</el-table-column>
+
 	      	<el-table-column
 		        prop="created_at"
 		        label="创建日期"
@@ -70,7 +79,8 @@ module.exports={
         		return row
       	},
       	articleEdit(index,row){
-      		console.log(row.id)
+      		// console.log(row.id)
+      		this.$router.push("/admin/article/edit/"+row.id);
       	},
       	articleDelete(index,row){
       		console.log(row.id)

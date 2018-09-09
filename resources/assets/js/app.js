@@ -113,12 +113,20 @@ const routes = [
       component:resolve=>require(["./components/admin/articleUpload.vue"], resolve),
     },
     {
+      path: "article/edit/:id",
+      component:resolve=>require(["./components/admin/articleUpload.vue"], resolve),
+    },
+    {
       path:'article/manage',
       component:resolve=>require(["./components/admin/articleManage.vue"], resolve),
     },
     {
       path:'image/upload',
       component:resolve=>require(["./components/admin/imageUpload.vue"], resolve),
+    },
+    {
+      path:'image/manage',
+      component:resolve=>require(["./components/admin/imageManage.vue"], resolve),
     }
     ]
   }

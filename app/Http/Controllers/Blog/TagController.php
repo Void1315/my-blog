@@ -23,4 +23,9 @@ class TagController extends Controller
    		]);
    		return $this->tagModel->createTages($request->tages);
     }
+
+    public function show(){
+        return $this->tagModel->all();
+    }
+
 }
