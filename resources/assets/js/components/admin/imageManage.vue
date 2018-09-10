@@ -23,7 +23,7 @@
 		    	:formatter="show_matter"
 		    >
 		    </el-table-column>
-		    <el-table-column label="操作">
+		    <el-table-column label="操作" min-width="150">
 		      <template slot-scope="scope">
 		        <el-button
 		          size="mini"
@@ -35,6 +35,17 @@
 		      </template>
 		    </el-table-column>
 		</el-table>
+		<el-row type="flex" class="row-bg" justify="center">
+				<el-pagination
+			      @current-change="handleCurrentChange"
+			      :current-page="thisPage"
+			      :page-size="15"
+			      :pager-count="5"
+			      layout="total, prev, pager, next, jumper"
+			      :total="datanum">
+		    	</el-pagination>
+		</el-row>
+		
 	</div>
 </template>
 <script>
@@ -42,13 +53,19 @@ module.exports={
 	data:function(){
 		return{
 			imageData:[],
+			datanum:0,
+			thisPage:0,
 		}
 	},
 	methods:{
-		getData:function(){
+		getData:function(page){
 			var self = this;
-			this.$ajax.get("/admin/image/list").then(function(res){
-				self.imageData = res.data;
+			var url = "/admin/image/list"
+			if(page)
+				url = "/admin/image/list"+"?page="+page
+			this.$ajax.get(url).then(function(res){
+				self.imageData = res.data.data;
+				self.datanum = res.data.total;
 			})
 		},
 		show_matter:function(row){
@@ -62,6 +79,9 @@ module.exports={
 		},
 		handleDelete:function(index,row){
 			console.log(index,row)
+		},
+		handleCurrentChange:function(val){
+			this.getData(val)
 		}
 	},
 	mounted:function () {

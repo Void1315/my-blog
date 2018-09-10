@@ -51,7 +51,7 @@
 		</el-aside>
 		<el-container>
 			<el-header class="show-phone admin-header">
-				<el-menu :default-active="activeIndex" class="el-menu-demo hander-menu" mode="horizontal" @select="handleSelect">
+				<el-menu  :default-active="$route.path" router="true" class="el-menu-demo hander-menu" mode="horizontal" @select="handleSelect">
 				  <el-submenu index="1">
 				        <template slot="title">
 				          <i class="el-icon-document"></i>

@@ -107,7 +107,6 @@
 				var appid = 'cytMq1XyR'; 
 				var conf = 'prod_8abf39185ea6bc48f81b87e55d3de736'; 
 				var width = window.innerWidth || document.documentElement.clientWidth;
-				console.log(width)
 				if (width < 960) { 
 					var script = document.createElement("script");
 				    script.src = 'https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '';

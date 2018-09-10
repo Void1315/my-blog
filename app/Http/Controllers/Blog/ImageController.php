@@ -42,7 +42,7 @@ class ImageController extends Controller
     }
 
     public function listShow(){
-        return $this->imageModel->all();
+        return $this->imageModel->paginate(15);
     }
 
     public function upload(Request $request){

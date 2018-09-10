@@ -23,10 +23,18 @@ class ArticleController extends Controller
     }
 
     public function index(Request $request){
-      $self = $this;
-      return $this->articleModel->all(["id","title","assent","deleted_at","created_at","img_id"])->each(function($item,$index){
+      $total = $this->articleModel->count();
+      $page = $request->page;
+      if(!$request->page)
+        $page = 1;
+      $pageNum = 15;
+      $offset = ($page-1)*$pageNum;
+      $limit = ($page)*$pageNum;
+      $data = $this->articleModel->offset($offset)->limit($limit)->get()->each(function($item){
         $item->image;
       });
+      $dataset = collect()->put("total",$total)->put("data",$data);
+      return $dataset;
     }
 
 

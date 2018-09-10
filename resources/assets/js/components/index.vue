@@ -1,6 +1,6 @@
 <template>
 	<div style="display: flex;background-color: rgb(147,147,147);">
-		<left-windows imgurl="img/img.jpg" @switchContent="switchContent">
+		<left-windows imgurl="img/img.jpg" @switchContent="switchContent" @initContent="initContent">
 		</left-windows>
 		<div :class="['right-content',{'long':contentLong,'short':contentShort}]">
 			<my-header>
@@ -24,6 +24,12 @@
 				switchContent:function(event){
 					this.contentLong = !this.contentLong;
 					this.contentShort = !this.contentShort;
+				},
+				initContent:function(event){
+					if(this.contentLong){
+						this.contentLong = false;
+						this.contentShort = true;
+					}
 				}
 			}
 	}

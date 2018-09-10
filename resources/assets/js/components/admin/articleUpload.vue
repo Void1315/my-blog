@@ -100,6 +100,7 @@
 				    self.editor.customConfig.uploadImgParams ={
 				    	"_token":document.getElementsByTagName('meta')['csrf-token'].getAttribute('content'),
 				    }
+				    self.editor.customConfig.zIndex = 1
 				    self.editor.customConfig.uploadFileName = 'image'
 				    self.editor.customConfig.customAlert = function (info) {
 					    self.$message.error(info)

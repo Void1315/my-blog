@@ -42,11 +42,9 @@
  		},
  		onfocus:function(){
  			this.b_focus=true;
- 			console.log(this.b_focus)
  		},
  		onblur:function(){
  			this.b_focus = false;
- 			console.log(this.b_focus)
  		}
  	}
   }
@@ -135,6 +133,12 @@
 		color: black;
 	}
 @media #{$medie-type} and (max-width: $phone-size){
+	.active{
+		width: 190px !important;
+	}
+	.i_active{
+		left:160px !important;
+	}
 	.header-box{
 		height: 65px;
 		border-bottom: $border-style;

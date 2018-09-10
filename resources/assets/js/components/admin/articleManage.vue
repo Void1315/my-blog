@@ -56,20 +56,36 @@
 		      </template>
 		    </el-table-column>
 		</el-table>
+		<el-row type="flex" class="row-bg" justify="center">
+				<el-pagination
+			      @current-change="handleCurrentChange"
+			      :current-page="thisPage"
+			      :page-size="15"
+			      :pager-count="5"
+			      layout="total, prev, pager, next, jumper"
+			      :total="datanum">
+		    	</el-pagination>
+		</el-row>
 	</div>
 </template>
 <script>
 module.exports={
 	data:function(){
 		return{
-			articleData:[]
+			articleData:[],
+			thisPage:0,
+			datanum:0,
 		}
 	},
 	methods:{
-		getData(){
+		getData(page){
 			var self = this;
-			this.$ajax.get("/admin/article/list").then(function(response){
-				self.articleData = response.data
+			var url = "/admin/article/list";
+			if(page)
+				url = url+"?page="+page
+			this.$ajax.get(url).then(function(response){
+				self.articleData = response.data.data;
+				self.datanum = response.data.total;
 			});
 		},
 		formatter(row, column) {
@@ -79,11 +95,13 @@ module.exports={
         		return row
       	},
       	articleEdit(index,row){
-      		// console.log(row.id)
       		this.$router.push("/admin/article/edit/"+row.id);
       	},
       	articleDelete(index,row){
       		console.log(row.id)
+      	},
+      	handleCurrentChange:function(val){
+
       	}
 	},
 	mounted:function () {

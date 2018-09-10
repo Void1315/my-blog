@@ -92,10 +92,21 @@
  		phoneHiddenLeft:function(){
  			if(window.screen.width<=992)
  				this.show = false;
+ 		},
+ 		initShow:function(){
+ 			if(!this.show){
+ 				this.show = true;
+	 			this.to_show = true;
+	 			
+ 			}
+ 			this.$emit('initContent');
  		}
  	},
  	created:function(){
  		var this_ = this
+ 		window.onresize=function(){
+ 			this_.initShow()
+ 		};
 		window.addEventListener("touchmove", function(event){
 			if(Math.abs(this_.touchY-event.touches[0].clientY)<150)
 			if(event.touches[0].clientX - this_.touchX>150)
