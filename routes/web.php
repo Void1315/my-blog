@@ -25,13 +25,15 @@ Route::namespace('Blog')->group(function () {
 	Route::post("/login","UserController@login");
 	Route::any("/check","UserController@checkUser");
 	Route::post("/article/assent","ArticleController@assent");
-	Route::get("/image/item","ImageController@showItem");
+	Route::get("/image/item","ImageController@showItem");//图片时间轴展示接口
 
 	
-	Route::get("/yhy1315/init","UserController@init");
+	Route::get("/yhy1315/init","UserController@init");//这是一个初始化账户的命令
 });
 Route::middleware(['auth'])->namespace('Blog')->group(function(){
 	Route::get("/admin/article/list","ArticleController@index");
+	Route::get("/admin/article/delete/{id}","ArticleController@delete");
+	Route::get("/admin/recyclebin/show","ArticleController@recycleBinShow");//回收站展示，没必要创建控制器，放在文章控制器里面了
 	Route::get("/admin/image/list","ImageController@listShow");
 	Route::get("/admin/type/list","TagController@show");
 	Route::post('/create/article','ArticleController@create');

@@ -24,3 +24,10 @@ function zipImage($zipPath,$path)
 	// return $str;
 	return $cmd_str;
 }
+
+
+function axiosData($data=NULL, $status=200, $statusText='OK')
+{
+    $arr = array('data' => $data, 'status' => $status, 'statusText' => $statusText);
+    return json_encode($arr);
+}

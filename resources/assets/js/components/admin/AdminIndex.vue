@@ -6,7 +6,6 @@
 					<i class="fa fa-bookmark"></i>
 					<span>后台</span>
 				</div>
-				
 			</div>
 	 		<div class="admin-side">
 	 			<el-row>
@@ -44,6 +43,10 @@
 				        <i class="el-icon-view"></i>
 				        <span slot="title">评论</span>
 				      </el-menu-item>
+				      <el-menu-item index="/admin/recyclebin">
+				        <i class="el-icon-delete"></i>
+				        <span slot="title">回收站</span>
+				      </el-menu-item>
 				    </el-menu>
 				  </el-col>
 	 			</el-row>
@@ -76,6 +79,10 @@
 				        <i class="el-icon-view"></i>
 				        <span slot="title">评论</span>
 				      </el-menu-item>
+				      <el-menu-item index="/admin/recyclebin">
+				        <i class="el-icon-delete"></i>
+				        <span slot="title">回收站</span>
+				      </el-menu-item>
 				</el-menu>
 			</el-header>
 			<el-main class="admin-main-box">
@@ -99,13 +106,13 @@ module.exports = {
 	},
 	methods: {
 	  handleOpen(key, keyPath) {
-	    console.log(key, keyPath);
+	    // console.log(key, keyPath);
 	  },
 	  handleClose(key, keyPath) {
-	    console.log(key, keyPath);
+	    // console.log(key, keyPath);
 	  },
 	  printText(){
-	  	console.log(this.editor.customConfig.onchange)
+	  	// console.log(this.editor.customConfig.onchange)
 	  },
 	},
 	created:function(){

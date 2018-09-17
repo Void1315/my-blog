@@ -3,9 +3,11 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 class Article extends Model
 {
     //
+    use SoftDeletes;
     public function test(){
     	return "code 200!";
     }
@@ -48,7 +50,10 @@ class Article extends Model
         $thisOne->img_url = Image::find($thisOne->img_id)->url;
         $thisOne->tages = $thisOne->tages;
         return $thisOne;
+    }
 
+    public function deleteThis($id){
+        return $this->find($id)->delete();
     }
 
 }

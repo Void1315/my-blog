@@ -38,7 +38,7 @@ class ArticleController extends Controller
     }
 
 
-    public function create(Request $request){
+    public function create(Request $request){//增加一篇文章
     	$this->validate($request, [
     		'title' => "required|string|max:50",
     		'text' => "required|string",
@@ -48,7 +48,14 @@ class ArticleController extends Controller
    		$id_list = $this->tagModel->createTages($request->tages);
    		$id = $this->articleModel->createOne($request->title,$request->text,$request->img_id);
    		$this->a_tModel->articleTag($id,$id_list);
-   		return "200!";
+   		return response(NULL, 200);
+    }
+
+    public function delete(Request $request){//删除一篇文章
+      if($this->articleModel->deleteThis($request->id))
+        return response(NULL, 200);
+      else
+        return response(NULL, 445);
     }
 
     public function edit(Request $request){
@@ -77,6 +84,11 @@ class ArticleController extends Controller
       $theArticle = $this->articleModel->find($request->id);
       $theArticle->assent = $theArticle->assent+1;
       $theArticle->save();
-      return "200";
+      return response(NULL, 200);
     }
+
+    public function recycleBinShow(Request $request){
+      return response("rua", 200);
+    }
+
 }

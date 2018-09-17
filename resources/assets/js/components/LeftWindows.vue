@@ -93,13 +93,15 @@
  			if(window.screen.width<=992)
  				this.show = false;
  		},
- 		initShow:function(){
- 			if(!this.show){
- 				this.show = true;
+ 		initShow:function(){//初始化检查窗口状态
+ 			if(this.show){
+	 			this.$emit('toShow');
 	 			this.to_show = true;
-	 			
+ 			}else{
+ 				this.$emit('notShow');
+ 				this.to_show = false;
  			}
- 			this.$emit('initContent');
+ 			
  		}
  	},
  	created:function(){

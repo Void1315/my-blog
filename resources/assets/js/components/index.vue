@@ -1,6 +1,6 @@
 <template>
 	<div style="display: flex;background-color: rgb(147,147,147);">
-		<left-windows imgurl="img/img.jpg" @switchContent="switchContent" @initContent="initContent">
+		<left-windows imgurl="img/img.jpg" @switchContent="switchContent" @notShow="notShow" @toShow="toShow">
 		</left-windows>
 		<div :class="['right-content',{'long':contentLong,'short':contentShort}]">
 			<my-header>
@@ -25,12 +25,15 @@
 					this.contentLong = !this.contentLong;
 					this.contentShort = !this.contentShort;
 				},
-				initContent:function(event){
-					if(this.contentLong){
-						this.contentLong = false;
-						this.contentShort = true;
-					}
+				notShow:function(){
+					this.contentLong = true;
+					this.contentShort = false;
+				},
+				toShow:function(){
+					this.contentLong = false;
+					this.contentShort = true;
 				}
+
 			}
 	}
 </script>

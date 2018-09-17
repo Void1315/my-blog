@@ -127,6 +127,10 @@ const routes = [
     {
       path:'image/manage',
       component:resolve=>require(["./components/admin/imageManage.vue"], resolve),
+    },
+    {
+      path:'recyclebin',
+      component:resolve=>require(["./components/admin/recyclebinManage.vue"],resolve),
     }
     ]
   }
