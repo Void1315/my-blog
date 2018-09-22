@@ -21,7 +21,7 @@ class ArticleController extends Controller
     	$this->a_tModel = new ArticleTag();
     	$this->imageModel = new Image();
     }
-
+    
     public function index(Request $request){
       $total = $this->articleModel->count();
       $page = $request->page;
