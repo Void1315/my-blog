@@ -4,7 +4,6 @@
 			
 	        <p><b>以下是编辑器的内容：</b></p>
 	        <div v-html="editorContent">
-	        	
 	        </div>
 	        <hr>
 		</div>
@@ -116,9 +115,9 @@
 						self.form.text = self.editorContent;
 					}
 		            self.editor.create();
-		            if(self.$route.params.id){
+		            if(self.$route.params.id){//修改文章的预加载
 		            	var id = self.$route.params.id
-		            	self.$ajax.get("/article/get/"+id).then(function(res){
+		            	self.$ajax.get("/admin/article/get/"+id).then(function(res){
 		            		for(var i=0;i<res.data.tages.length;i++){
 		            			self.form.tages.push(res.data.tages[i].name)
 		            		}

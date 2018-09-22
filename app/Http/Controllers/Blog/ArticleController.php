@@ -51,8 +51,15 @@ class ArticleController extends Controller
    		return response(NULL, 200);
     }
 
-    public function delete(Request $request){//删除一篇文章
+    public function delete(Request $request){//软删除一篇文章
       if($this->articleModel->deleteThis($request->id))
+        return response(NULL, 200);
+      else
+        return response(NULL, 445);
+    }
+
+    public function solidDelete(Request $request){//硬删除一篇文章
+      if($this->articleModel->solidDeleteThis($request->id))
         return response(NULL, 200);
       else
         return response(NULL, 445);
@@ -65,7 +72,7 @@ class ArticleController extends Controller
         'tages' => "required|array",
         "img_id" => "required|integer"
       ]);
-      $this->a_tModel->deleteWithAid($request->id);
+      $this->a_tModel->deleteWithAid($request->id);//删除原有关系
       $id_list = $this->tagModel->createTages($request->tages);
       $this->articleModel->edit($request->id,$request->title,$request->text,$request->img_id);
       $this->a_tModel->articleTag($request->id,$id_list);
@@ -80,6 +87,10 @@ class ArticleController extends Controller
       return $this->articleModel->oneView($request->id);
     }
 
+    public function adminArticleGet(Request $request){
+      return $this->articleModel->adminOneView($request->id);
+    }
+
     public function assent(Request $request){
       $theArticle = $this->articleModel->find($request->id);
       $theArticle->assent = $theArticle->assent+1;
@@ -88,7 +99,8 @@ class ArticleController extends Controller
     }
 
     public function recycleBinShow(Request $request){
-      return response("rua", 200);
+      $data = $this->articleModel->onlyTrashed()->get();
+      return response()->json($data);
     }
 
 }

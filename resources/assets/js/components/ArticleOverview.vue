@@ -58,17 +58,17 @@
 	     	return{
 
 	    	}
+	 	},
+	 	methods:{
+	 		sp(test){
+	 			return test; 
+	 		}
 	 	}
 	}
 </script>
 
 <style lang="scss"  type="text/css">
 @import "../../sass/app.scss";
-
-
-
-
-
 
 .img-box{
 	width: 100%;
@@ -85,8 +85,8 @@
 	}
 }
 .lable-box{
-	    display: inline-flex;
-    	justify-content: space-between;
+    display: inline-flex;
+	justify-content: space-between;
 	.tag-item{
 	    display: inline-flex;
         align-items: center;
@@ -103,11 +103,13 @@
 	}
 }
 .info-box{
-    // height: 190px;
     overflow: hidden;
+    height: 230px;
     a{
     	color: black;
+    	/*text-decoration:underline;*/
     }
+    a:hover{text-decoration:underline;color: #777777;}
     p{
     	word-break: break-word;
     	margin-top: 0px;

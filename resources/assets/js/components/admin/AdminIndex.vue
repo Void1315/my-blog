@@ -2,7 +2,7 @@
 	<el-container style="display: flex;height: 100%;background-color: white;">
 		<el-aside class="admin-side-box hidden-phone">
 			<div class="show-side">
-				<div @click="printText">
+				<div>
 					<i class="fa fa-bookmark"></i>
 					<span>后台</span>
 				</div>
@@ -13,8 +13,6 @@
 				    <el-menu
 				      class="el-menu-vertical-demo"
 				      :default-active="$route.path"
-				      @open="handleOpen"
-				      @close="handleClose"
 				      router="true"
 				      background-color="#545c64"
 				      text-color="#fff"
@@ -27,6 +25,7 @@
 				        <el-menu-item-group>
 				          <el-menu-item index="/admin/article">上传文章</el-menu-item>
 				          <el-menu-item index="/admin/article/manage">文章管理</el-menu-item>
+				          <el-menu-item index="/admin/article/recycle">回收站</el-menu-item>
 				        </el-menu-item-group>
 				      </el-submenu>
 				      <el-submenu index="2">
@@ -37,15 +36,12 @@
 				        <el-menu-item-group>
 				          <el-menu-item index="/admin/image/upload">上传图片</el-menu-item>
 				          <el-menu-item index="/admin/image/manage">管理图片</el-menu-item>
+				          <el-menu-item index="/admin/image/recycle">回收站</el-menu-item>
 				        </el-menu-item-group>
 				      </el-submenu>
 				      <el-menu-item index="3">
 				        <i class="el-icon-view"></i>
 				        <span slot="title">评论</span>
-				      </el-menu-item>
-				      <el-menu-item index="/admin/recyclebin">
-				        <i class="el-icon-delete"></i>
-				        <span slot="title">回收站</span>
 				      </el-menu-item>
 				    </el-menu>
 				  </el-col>
@@ -54,7 +50,7 @@
 		</el-aside>
 		<el-container>
 			<el-header class="show-phone admin-header">
-				<el-menu  :default-active="$route.path" router="true" class="el-menu-demo hander-menu" mode="horizontal" @select="handleSelect">
+				<el-menu  :default-active="$route.path" router="true" class="el-menu-demo hander-menu" mode="horizontal">
 				  <el-submenu index="1">
 				        <template slot="title">
 				          <i class="el-icon-document"></i>
@@ -63,6 +59,7 @@
 				        <el-menu-item-group>
 				          <el-menu-item index="/admin/article">上传文章</el-menu-item>
 				          <el-menu-item index="/admin/article/manage">文章管理</el-menu-item>
+				          <el-menu-item index="/admin/article/recycle">回收站</el-menu-item>
 				        </el-menu-item-group>
 				      </el-submenu>
 				      <el-submenu index="2">
@@ -73,24 +70,19 @@
 				        <el-menu-item-group>
 				          <el-menu-item index="/admin/image/upload">上传图片</el-menu-item>
 				          <el-menu-item index="/admin/image/manage">管理图片</el-menu-item>
+				          <el-menu-item index="/admin/image/recycle">回收站</el-menu-item>
 				        </el-menu-item-group>
 				      </el-submenu>
 				      <el-menu-item index="3">
 				        <i class="el-icon-view"></i>
 				        <span slot="title">评论</span>
 				      </el-menu-item>
-				      <el-menu-item index="/admin/recyclebin">
-				        <i class="el-icon-delete"></i>
-				        <span slot="title">回收站</span>
-				      </el-menu-item>
 				</el-menu>
 			</el-header>
 			<el-main class="admin-main-box">
 				<div class="admin-content">
 					<router-view></router-view>
-				    
 				</div>
-
 			</el-main>
 		</el-container>
 	</el-container>
@@ -100,39 +92,13 @@
 module.exports = {
 	data:function(){
 		return{
-			editorContent: '',
-			editor:""
 		}
 	},
 	methods: {
-	  handleOpen(key, keyPath) {
-	    // console.log(key, keyPath);
-	  },
-	  handleClose(key, keyPath) {
-	    // console.log(key, keyPath);
-	  },
-	  printText(){
-	  	// console.log(this.editor.customConfig.onchange)
-	  },
 	},
-	created:function(){
-		// this.editor.customConfig.onchange = function () {
-  //           // onchange 事件中更新数据
-  //           this.editorContent = this.editor.txt.html();
-  //       };
-  		
+	created:function(){	
 	},
 	mounted:function () {
-		// axios.post('/test', {
-	 //    tages: ["php"],
-	 //    lastName: 'Flintstone'
-	 //  })
-	 //  .then(function (response) {
-	 //    console.log(response);
-	 //  })
-	 //  .catch(function (error) {
-	 //    console.log(error);
-	 //  });
     }
 }
 

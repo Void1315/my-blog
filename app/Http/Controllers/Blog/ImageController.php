@@ -53,4 +53,9 @@ class ImageController extends Controller
         return json_encode(array("errno"=>0,"data"=>array($arr_url)));
     }
 
+    public function recycleBinShow(Request $request){//回收站展示
+      $data = $this->imageModel->onlyTrashed()->get();
+      return response()->json($data);
+    }
+
 }

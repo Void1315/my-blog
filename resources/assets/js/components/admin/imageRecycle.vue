@@ -22,10 +22,11 @@
 		methods:{
 			getData:function(){
 				var self = this
-				this.$ajax.get("/admin/recyclebin/show").then(function(res){
-					console.log(res)
+				this.$ajax.get("/admin/image/recyclebin/index").then(function(res){
+					self.recycleleData = res.data
 				}).catch(function(error){
 					console.log(error.res)
+					self.$message.warning("出现了一些错误请稍后再试!")
 				});
 			}
 		},

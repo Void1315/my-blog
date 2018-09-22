@@ -74,7 +74,7 @@
 	 			})
 	 		},
 	 		toAssent(){
-	 			isAssent = "isAssent"
+	 			isAssent = "isAssent_"+this.$route.params.id
 	 			var self = this
 	 			if(document.cookie.indexOf(isAssent + "=") == -1)
 	 			{
@@ -83,12 +83,11 @@
 	 					id:this.$route.params.id,
 	 					_token:document.getElementsByTagName('meta')['csrf-token'].getAttribute('content'),
 	 				}).then(function(res){
-	 					if(res.data == "200"){
 	 						self.$message.success("谢谢你喜欢这篇文章!");
 	 						self.data.assent+=1
-	 					}
-	 					else
-	 						self.$message("出现了一些错误请稍后再试!");
+	 				}).catch(function(error){
+	 					console.log(error.res)
+	 					self.$message("出现了一些错误请稍后再试!");
 	 				})
 	 			}else{
 	 				this.$message.warning(" 你已经点过赞了!");

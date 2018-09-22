@@ -8,9 +8,6 @@ class Article extends Model
 {
     //
     use SoftDeletes;
-    public function test(){
-    	return "code 200!";
-    }
 
     public function createOne($title,$text,$img_id){
     	$this->title = $title;
@@ -26,7 +23,7 @@ class Article extends Model
     }
 
     public function edit($id,$title,$text,$img_id){
-        $model = $this->find($id);
+        $model = $this->withTrashed()->find($id);
         $model->title = $title;
         $model->text = $text;
         $model->img_id = $img_id;
@@ -52,8 +49,22 @@ class Article extends Model
         return $thisOne;
     }
 
+    public function adminOneView($id){
+        $thisOne = $this->withTrashed()->find($id);
+        $thisOne->img_url = Image::find($thisOne->img_id)->url;
+        $thisOne->tages = $thisOne->tages;
+        return $thisOne;
+    }
+
+    /*
+    以下是删除逻辑，一会回来补充
+    */
     public function deleteThis($id){
         return $this->find($id)->delete();
+    }
+
+    public function solidDeleteThis($id){
+        return $this->withTrashed()->find($id)->forceDelete();
     }
 
 }

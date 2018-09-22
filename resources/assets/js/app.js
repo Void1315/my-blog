@@ -68,7 +68,7 @@ Array.prototype.remove = function (val) {
 // import { Row, Col,Input,Form,FormItem } from 'element-ui';
 // Vue.use(Row);
 // Vue.use(Col);
-// Vue.use(Input);;
+// Vue.use(Input);;终于能ＴＭ写中文了
 // Vue.use(Form);
 // Vue.use(FormItem);
 
@@ -121,6 +121,10 @@ const routes = [
       component:resolve=>require(["./components/admin/articleManage.vue"], resolve),
     },
     {
+      path:'article/recycle',
+      component:resolve=>require(["./components/admin/articleRecycle.vue"], resolve),
+    },
+    {
       path:'image/upload',
       component:resolve=>require(["./components/admin/imageUpload.vue"], resolve),
     },
@@ -129,8 +133,8 @@ const routes = [
       component:resolve=>require(["./components/admin/imageManage.vue"], resolve),
     },
     {
-      path:'recyclebin',
-      component:resolve=>require(["./components/admin/recyclebinManage.vue"],resolve),
+      path:'image/recycle',
+      component:resolve=>require(["./components/admin/imageRecycle.vue"],resolve),
     }
     ]
   }
