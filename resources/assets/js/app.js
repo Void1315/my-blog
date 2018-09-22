@@ -68,7 +68,7 @@ Array.prototype.remove = function (val) {
 // import { Row, Col,Input,Form,FormItem } from 'element-ui';
 // Vue.use(Row);
 // Vue.use(Col);
-// Vue.use(Input);
+// Vue.use(Input);;
 // Vue.use(Form);
 // Vue.use(FormItem);
 
