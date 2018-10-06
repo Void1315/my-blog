@@ -1,9 +1,8 @@
 <template>
 	<div class="content">
-		<article-over v-for="article in data" :article="article">
+		<article-over v-for="article in data" :article="article" v-loading="loading">
 		</article-over>
 		<hr class="hidden-md-and-up">
-		<br><br><br><br><br><br><br>
 	</div>
 </template>
 
@@ -12,6 +11,7 @@
 	    data:function(){
 	     	return{
 		     		data:"",
+		     		loading:true,
 	    	}
 	 	},
 	 	methods:{
@@ -19,6 +19,7 @@
 	 			var self = this;
 	 			this.$ajax.get("/article/overview").then(function(response){
 	 				self.data = response.data;
+	 				self.loading = false;
 	 			})
 	 		}
 	 	},

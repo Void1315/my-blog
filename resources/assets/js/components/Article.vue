@@ -40,10 +40,6 @@
 					</div>
 				</div>
 				<div class="like-box" >
-<!-- 					<div class="lable-item">
-						<i class="fa fa-thumbs-o-down"></i>
-						<span>0</span>
-					</div> -->
 					<div class="lable-item on-cursor" @click="toAssent">
 						<i class="fa fa-thumbs-o-up"></i>
 						<span>{{ data.assent }}</span>
