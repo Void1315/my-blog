@@ -1,5 +1,5 @@
 <template>
-	<div class="content">
+	<div class="content" id="yhy">
 		<article-over v-for="article in data" :article="article" v-loading="loading">
 		</article-over>
 		<hr class="hidden-md-and-up">

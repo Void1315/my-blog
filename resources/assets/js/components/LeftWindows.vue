@@ -261,7 +261,7 @@
 		}
 	}
 .hide-left-box{
-	z-index: 9999;
+	z-index: 1000;
 	position: fixed;
     transition: all .5s;
     top: 50%;

@@ -25,10 +25,11 @@
 				</div>
 			</el-col>
 			<el-col :span="12" :offset="2" :xs="{span:24,offset:0}">
-				<div class="info-box">
-					<a :href="'/#/article/'+article.id" v-html="article.text">
-					</a>
-				</div>
+				<a :href="'/#/article/'+article.id">
+					<div class="info-box">
+						<p v-html="rp(article.text)"></p>
+					</div>
+				</a>
 			</el-col>
 		</el-row>
 		<el-row type="flex" class="icon-box" justify="space-between">
@@ -60,16 +61,20 @@
 	    	}
 	 	},
 	 	methods:{
-	 		sp(test){
-	 			return test; 
+	 		rp(test){
+	 			test = test.replace(/<[^>]+>/g,"");
+	 			return test;
 	 		}
 	 	}
 	}
 </script>
 
-<style lang="scss"  type="text/css">
+<style lang="scss"  type="text/css" scoped>
 @import "../../sass/app.scss";
-
+a{
+	color: black;
+}
+a:hover{text-decoration:underline;color: #777777;}
 .img-box{
 	width: 100%;
 	height: 220px;
@@ -105,13 +110,8 @@
 .info-box{
     overflow: hidden;
     height: 230px;
-    a{
-    	color: black;
-    	/*text-decoration:underline;*/
-    }
-    a:hover{text-decoration:underline;color: #777777;}
+    word-wrap: break-word;
     p{
-    	word-break: break-word;
     	margin-top: 0px;
 	    font-size: 15px;
     	font-weight: 500;

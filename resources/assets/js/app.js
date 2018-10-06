@@ -37,7 +37,7 @@ import 'element-ui/lib/theme-chalk/base.css';
 // collapse 展开折叠
 // import CollapseTransition from 'element-ui/lib/transitions/collapse-transition';
 // Vue.component(CollapseTransition.fade, CollapseTransition)
-
+import IndexContent from "./components/IndexContent.vue"
 // import preview from 'vue-photo-preview'
 // import 'vue-photo-preview/dist/skin.css'
 // Vue.use(preview);
@@ -65,7 +65,6 @@ Array.prototype.remove = function (val) {
     }
 };
 
-// import { Row, Col,Input,Form,FormItem } from 'element-ui';
 // Vue.use(Row);
 // Vue.use(Col);
 // Vue.use(Input);;终于能ＴＭ写中文了
@@ -85,7 +84,7 @@ const routes = [
   		component: resolve=>require(["./components/index.vue"], resolve),
   		children:[{
     			path: '',
-        	component: resolve=>require(["./components/IndexContent.vue"], resolve),
+        	component: IndexContent,
     		},
     		{
     			path:"article/:id",

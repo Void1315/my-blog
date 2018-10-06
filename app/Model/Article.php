@@ -35,6 +35,7 @@ class Article extends Model
         return $this->all()->each(function($item, $key){
             $item->img_url = Image::find($item->img_id)->zip_url;
             $item->tages = $item->tages;
+            $item->text = mb_substr($item->text,0,200).".....";
         });
     }
 
