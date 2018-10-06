@@ -1,54 +1,57 @@
 <template>
 	<div class="content">
-		<div class="article-box" v-viewer="{title:false,movable:false,url:getUrl}">
-			<el-row>
-				<el-col :span="4" :lg="{span:2}">
-					<div class="side-triangle article-triangle">
+		<div class="article-box" >
+			<div v-viewer="{title:false,movable:false,url:getUrl}">
+				<el-row>
+					<el-col :span="4" :lg="{span:2}">
+						<div class="side-triangle article-triangle">
+						</div>
+					</el-col>
+					<div class="head-box">
+						<p class="title">
+							{{data.title}}
+						</p>
 					</div>
-				</el-col>
-				<div class="head-box">
-					<p class="title">
-						{{data.title}}
-					</p>
-				</div>
-				<div class="data-box">
-					<i class="fa fa-calendar-plus-o"></i>
-					<span>
-						{{data.created_at}}
-					</span>
-				</div>
-			</el-row>
-				<el-row >
-					<el-col :md="{span:18,offset:3}">
-						<img :src="data.img_url" class="article-img-box">
+					<div class="data-box">
+						<i class="fa fa-calendar-plus-o"></i>
+						<span>
+							{{data.created_at}}
+						</span>
+					</div>
+				</el-row>
+					<el-row >
+						<el-col :md="{span:18,offset:3}">
+							<img :src="data.img_url" class="article-img-box">
+						</el-col>
+					</el-row>
+				<el-row>
+					<el-col :md="{span:18,offset:3}" :xs="{span:24,offset:0}" class="text-box" v-html="data.text">	
 					</el-col>
 				</el-row>
-			<el-row>
-				<el-col :md="{span:18,offset:3}" :xs="{span:24,offset:0}" class="text-box" v-html="data.text">	
-				</el-col>
-			</el-row>
-			<el-row>
-				<el-col >
-					<hr class="side-hr">
-				</el-col>
-			</el-row>
-			<el-row type="flex" class="bottom-icon-box" justify="space-between">
-				<div class="lable-box" >
-					<div class="tag-item on-cursor" v-for="tag in data.tages" >
-						<i class="fa fa-tag"></i>
-						<span>{{ tag.name }}</span>
+				<el-row>
+					<el-col >
+						<hr class="side-hr">
+					</el-col>
+				</el-row>
+				<el-row type="flex" class="bottom-icon-box" justify="space-between">
+					<div class="lable-box" >
+						<div class="tag-item on-cursor" v-for="tag in data.tages" >
+							<i class="fa fa-tag"></i>
+							<span>{{ tag.name }}</span>
+						</div>
 					</div>
-				</div>
-				<div class="like-box" >
-					<div class="lable-item on-cursor" @click="toAssent">
-						<i class="fa fa-thumbs-o-up"></i>
-						<span>{{ data.assent }}</span>
+					<div class="like-box" >
+						<div class="lable-item on-cursor" @click="toAssent">
+							<i class="fa fa-thumbs-o-up"></i>
+							<span>{{ data.assent }}</span>
+						</div>
+						<div class="lable-item">
+							<i class="fa fa-share-alt"></i>
+						</div>
 					</div>
-					<div class="lable-item">
-						<i class="fa fa-share-alt"></i>
-					</div>
-				</div>
-			</el-row>
+				</el-row>
+			</div>
+			
 			<div class="comment-box">
 				<div id="SOHUCS" v-bind:sid="$route.params.id" ></div> 
 			</div>
