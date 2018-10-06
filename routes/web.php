@@ -21,7 +21,7 @@ Auth::routes();
 Route::namespace('Blog')->group(function () {
     // 在 "App\Http\Controllers\Blog" 命名空间下的控制器
 	Route::get("/article/overview","ArticleController@indexOverView");//首页文章缩略
-	Route::get("/article/get/{id}","ArticleController@articleGet");
+	Route::get("/article/get/{id}","ArticleController@articleGet");//查看文章
 	Route::post("/login","UserController@login");
 	Route::any("/check","UserController@checkUser");
 	Route::post("/article/assent","ArticleController@assent");

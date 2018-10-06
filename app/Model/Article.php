@@ -35,7 +35,7 @@ class Article extends Model
         return $this->all()->each(function($item, $key){
             $item->img_url = Image::find($item->img_id)->zip_url;
             $item->tages = $item->tages;
-            $item->text = mb_substr($item->text,0,200).".....";
+            $item->text = mb_substr($item->text,0,500).".....";
         });
     }
 
@@ -45,6 +45,8 @@ class Article extends Model
 
     public function oneView($id){
         $thisOne = $this->find($id);
+        if(!$thisOne)
+            return response("Not Found!",404);
         $thisOne->img_url = Image::find($thisOne->img_id)->url;
         $thisOne->tages = $thisOne->tages;
         return $thisOne;

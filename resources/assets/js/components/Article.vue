@@ -1,7 +1,7 @@
 <template>
 	<div class="content">
 		<div class="article-box" >
-			<div v-viewer="{title:false,movable:false,url:getUrl}">
+			<div v-viewer="{title:false,movable:false,url:getUrl}" v-loading="loading">
 				<el-row>
 					<el-col :span="4" :lg="{span:2}">
 						<div class="side-triangle article-triangle">
@@ -63,6 +63,7 @@
 	    data:function(){
 	     	return{
 	     		data:'',
+	     		loading:true,
 	    	}
 	 	},
 	 	methods:{
@@ -70,6 +71,17 @@
 	 			var self = this;
 	 			this.$ajax.get("/article/get/"+this.$route.params.id).then(function(response){
 	 				 self.data = response.data;
+	 				 self.loading = false;
+	 			}).catch(function(error){
+	 				if(error.response){
+	 					if(error.response.status == 404){
+	 						self.$router.replace("/")
+	 						self.$message.error("小老弟，文章不存在")
+	 					}
+	 					else
+	 						self.$message.error("出现了一些错误请稍后再试！")
+	 				}
+	 				
 	 			})
 	 		},
 	 		toAssent(){
@@ -165,7 +177,10 @@
 	box-shadow: $clear-love-shadow;
 }
 .lable-box{
-	display: inline-block;
+	display: inline-flex;
+	.tag-item{
+	    margin-right: 10px;
+	}
 }
 .like-box{
 	display: inline-block;
