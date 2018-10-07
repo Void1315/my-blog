@@ -8,7 +8,9 @@
 		<!-- </transition> -->
 		<transition name="el-fade-in-linear">
 			<div v-show="show" :class="{'to-show':to_show,'to-hide':!to_show}">
-				<div class="left-top">		
+				<div class="background-icon-box">
+					<div class="left-top">
+					</div>		
 					<div class="left-img-icon-box">
 						<div class="left-img-border">
 							<div class="left-img-box">
@@ -23,17 +25,20 @@
 							<i class="fa fa-twitter"></i>
 						</div>
 					</div>
+				</div>
+				<div class="info-font-box">
 					<div class="name-font">
 						<font>
 							Asahi
 						</font>
 					</div>
-
 					<div class="info-font">
 						<font>
 							&nbsp;&nbsp;&nbsp;&nbsp;最初我们来到这个世界，是因为不得不来；最终我们离开这个世界，是因为不得不走。
 						</font>
 					</div>
+				</div>
+					
 					<div class="left-hr">
 					</div>
 					<div class="left-bot-box">
@@ -45,18 +50,21 @@
 						<p>Be it frost or ice</p>
 						<p>Your spirit runs to mine, fast or slow</p>
 					</div>
-					<div class="left-hr" style="position: inherit;top: 0;">
-					</div>
-					<div class="left-foot-box">
-						<div class="left-foot-left">
-							<i class="fa fa-copyright"></i>
-							<span>2018</span>
+					<div class="foot-info-box">
+						<div class="left-hr" style="margin-bottom: 5px;">
 						</div>
-						<div class="left-foot-right">
-							<span>by Asahi</span>
+						<div class="left-foot-box">
+							<div class="left-foot-left">
+								<i class="fa fa-copyright"></i>
+								<span>2018</span>
+							</div>
+							<div class="left-foot-right">
+								<span>by Asahi</span>
+							</div>
 						</div>
 					</div>
-				</div>
+					
+				
 			</div>
 			
 		</transition>
@@ -166,7 +174,7 @@
 	.left-img-icon-box{
 		@extend .item-ctent;
 		position: relative;
-    	top: 40px;
+    	top: -70px;
     	i{
     		@extend .on-cursor;
     	}
@@ -206,27 +214,6 @@
 			}
 		}
 	}
-	.name-font{
-		display: inline-block;
-	    position: relative;
-	    left: 65px;
-    	top: 37px;
-	    font{
-    	    font-size: 18px;
-    		font-weight: bolder;
-
-	    }
-	}
-	.info-font{
-	    position: relative;
-	    top: 50px;
-	    left: 40px;
-	    max-width: 250px;
-	    font{
-	    	font-size: 14px;
-    		font-weight: normal;
-	    }
-	}
 	.left-hr{
 		display: block;
 	    unicode-bidi: -webkit-isolate;
@@ -239,13 +226,11 @@
 	    border-style: inset;
 	    border-width: 0.5px;
 	    border-color: #4F4F4F;
-	    position: relative;
-    	top: 60px;
-    	width: 290px;
+	    margin: 20px 0;
+    	width: 100%;
 	}
 	.left-bot-box{
 		@extend .item-ctent;
-	    margin-top: 100px;
 	    flex-direction: column;
 	}
 	.left-foot-box{
@@ -260,6 +245,36 @@
 			display: inline-block;
 		}
 	}
+.background-icon-box{
+	height: 180px;
+}
+.info-font-box{
+    .name-font{
+		display: inline-block;
+	    position: relative;
+	    left: 65px;
+	    font{
+    	    font-size: 18px;
+    		font-weight: bolder;
+
+	    }
+	}
+	.info-font{
+	    position: relative;
+	    left: 40px;
+	    max-width: 250px;
+	    font{
+	    	font-size: 14px;
+    		font-weight: normal;
+	    }
+	}
+}
+.foot-info-box{
+	position: absolute;
+    bottom: 0px;
+    width: 100%;
+    margin-bottom: 10px;
+}
 .hide-left-box{
 	z-index: 1000;
 	position: fixed;
@@ -285,6 +300,12 @@
 	}
 	.hide-left-box{
 		display: none;
+	}
+	.left-bot-box{
+		p{
+			margin: 0;
+			margin-top: 10px;
+		}
 	}
 	
 }
