@@ -34,7 +34,18 @@
 					this.contentShort = true;
 				}
 
-			}
+		},
+		mounted:function(){
+			var self = this;
+			this.$nextTick(function () {
+				if(window.screen.width < 992)
+					self.$message.success({
+						dangerouslyUseHTMLString: true,
+          				message: '<strong> <i>向右</i> 滑动显示侧边栏!</strong>'
+					})
+			})
+		}
+
 	}
 </script>
 <style lang="scss" scoped="" type="text/css">

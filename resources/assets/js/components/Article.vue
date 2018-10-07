@@ -109,7 +109,6 @@
 	 		var self = this;
 			this.$nextTick(function () {
 				self.getData();
-				
 			})
 	 	},
 	 	beforeMount:function(){
@@ -142,6 +141,10 @@
     padding-bottom: 20px;
 }
 .text-box{
+	img{
+		max-width: 800px;
+		max-height: 800px;
+	}
 	p{
     	word-break: break-word;
 	}
@@ -207,6 +210,12 @@
 		padding: 0;
 	}
 }
-
+@media #{$medie-type} and (min-width: $phone-size){
+	.article-img-box{
+		margin: auto;
+		max-height: 400px;
+    	width: auto;
+	}
+}
 
 </style>
