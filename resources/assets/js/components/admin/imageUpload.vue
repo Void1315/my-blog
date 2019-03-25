@@ -17,6 +17,7 @@
 				  :on-success="handSuccess"
 				  :file-list="form.imageList"
 				  :data="img_data"
+				  :multiple="true"
 				  name="img"
 				  list-type="picture">
 				  <el-button size="small" type="primary">点击上传</el-button>
