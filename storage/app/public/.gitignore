@@ -1,5 +1,3 @@
-image/*
-zip_image/*
-!image/
-!zip_imaage/
+!image
+!zip_imaage
 !.gitignore
