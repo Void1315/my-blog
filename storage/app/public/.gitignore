@@ -1,2 +1,5 @@
-*
+!image/
+!zip_imaage/
+image/*
+zip_image/*
 !.gitignore
