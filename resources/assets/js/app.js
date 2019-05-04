@@ -29,7 +29,6 @@ import ElementUI from 'element-ui';
 import VueRouter from 'vue-router';
 import axios from 'axios';
 import 'element-ui/lib/theme-chalk/index.css';
-import '../font-awesome/css/font-awesome.min.css';
 import 'element-ui/lib/theme-chalk/display.css';
 // import $ from 'jquery';
 

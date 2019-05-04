@@ -8,13 +8,13 @@
 	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 	<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 	<link rel="stylesheet" type="text/css" href="https://unpkg.com/wangeditor@3.1.1/release/wangEditor.min.css">
-	<script src="https://cdn.bootcss.com/jquery/3.2.0/jquery.min.js"></script>
+	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
 	<div id="app" style="height: 100%;">
 	  <router-view></router-view>
 	</div>
-
+	<script src="https://cdn.bootcss.com/jquery/3.4.0/jquery.min.js"></script>
 	<script src="https://cdn.bootcss.com/vue/2.5.7/vue.min.js"></script>
 	<script src="https://unpkg.com/element-ui@2.4.6/lib/index.js"></script>
 	<script src="https://cdn.bootcss.com/vue-router/3.0.1/vue-router.js"></script>
