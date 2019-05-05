@@ -30,8 +30,13 @@ import VueRouter from 'vue-router';
 import axios from 'axios';
 import 'element-ui/lib/theme-chalk/index.css';
 import 'element-ui/lib/theme-chalk/display.css';
-// import $ from 'jquery';
-
+//图片懒加载
+import VueLazyLoad from 'vue-lazyload';
+Vue.use(VueLazyLoad,{
+  error:'../../../public/img/error.jpeg',
+  loading:'../../../public/img/loading.gif',
+  attempt:3
+});
 import 'element-ui/lib/theme-chalk/base.css';
 // collapse 展开折叠
 // import CollapseTransition from 'element-ui/lib/transitions/collapse-transition';
@@ -42,11 +47,11 @@ import IndexContent from "./components/IndexContent.vue"
 // Vue.use(preview);
 
 
-import 'viewerjs/dist/viewer.css'
-import Viewer from 'v-viewer'
-Vue.use(Viewer)
+import 'viewerjs/dist/viewer.css';
+import Viewer from 'v-viewer';
+Vue.use(Viewer);
 
-import wangEditor from 'wangeditor'
+import wangEditor from 'wangeditor';
 
 
 Vue.prototype.$ajax = axios;

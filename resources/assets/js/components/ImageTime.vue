@@ -9,7 +9,7 @@
     			    		<p>{{part.itemData}}</p>
     			    	</div>
     			    	<div class="image-time-box" v-for="(url,index2) in part.partImg">
-                                <img v-bind:src="url.zip_url">
+                                <img v-lazy="url.zip_url" alt="我是一张图 如果你看不见 说明网络不好!">
     			    	</div>
     			    	<div class="image-time-text">
     			    		<p>

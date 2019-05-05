@@ -21,6 +21,7 @@
 	<script src="https://cdn.bootcss.com/vue-router/3.0.1/vue-router.js"></script>
 	<script src="https://cdn.bootcss.com/axios/0.18.0/axios.min.js"></script>
 	<script type="text/javascript" defer="defer" src="https://unpkg.com/wangeditor@3.1.1/release/wangEditor.min.js"></script>
+	<script src="https://cdn.bootcss.com/vue-lazyload/1.2.6/vue-lazyload.js"></script>
 	<script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>
