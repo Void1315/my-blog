@@ -33,8 +33,8 @@ import 'element-ui/lib/theme-chalk/display.css';
 //图片懒加载
 import VueLazyLoad from 'vue-lazyload';
 Vue.use(VueLazyLoad,{
-  error:'../../../public/img/error.jpeg',
-  loading:'../../../public/img/loading.gif',
+  error:'../../public/img/error.jpeg',
+  loading:'../../public/img/loading.gif',
   attempt:3
 });
 import 'element-ui/lib/theme-chalk/base.css';
