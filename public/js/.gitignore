@@ -1,2 +1,2 @@
-app.js
+*.js
 !.gitignore
