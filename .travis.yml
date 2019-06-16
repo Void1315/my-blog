@@ -24,7 +24,7 @@ install:
 - php artisan db:seed --class=UsersTableSeeder
 before_install:
 - openssl aes-256-cbc -K $encrypted_da6fc65ed41b_key -iv $encrypted_da6fc65ed41b_iv
-  -in id_rsa.enc -out ~\/.ssh/id_rsa -d
+  -in id_rsa.enc -out ~/.ssh/id_rsa -d
 - chmod 600 ~/.ssh/id_rsa
 after_success:
 - ssh asahi@101.201.71.119 "~/autobash/my-blog"
