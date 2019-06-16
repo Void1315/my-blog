@@ -19,9 +19,9 @@ class CreateUsersTable extends Migration
             $table->string('email',50);
             $table->text("remember_token")->nullable();
             $table->text("password");
-            $table->string("info");
-            $table->string("sex",5);
-            $table->text("info_text");//zuo
+            $table->string("info")->nullable();
+            $table->string("sex",5)->nullable();
+            $table->text("info_text")->nullable();//zuo
             $table->timestamps();
         });
     }
