@@ -15,7 +15,7 @@ install:
     - composer self-update
     - composer install --no-interaction --prefer-dist --no-suggest
     - npm install
-    - npm run build
+    - npm run prod
     - php artisan key:generate
     - php artisan migrate
     - php artisan db:seed --class=UsersTableSeeder
