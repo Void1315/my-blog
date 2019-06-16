@@ -1,5 +1,29 @@
 language: php
 
 php:
-  - 7.2.16
-  - nightly
+    - 7.2.16
+
+services:
+    - mysql
+
+addons:
+    chrome: stable
+
+install:
+    - mv .env.example .env
+    - mysql -e 'create database vue_blog;'
+    - composer self-update
+    - composer install --no-interaction --prefer-dist --no-suggest
+    - npm install
+    - npm run build
+    - php artisan key:generate
+    - php artisan migrate
+    - php artisan db:seed --class=UsersTableSeeder
+
+before_script:
+    - google-chrome-stable --headless --disable-gpu --remote-debugging-port=8000 http://localhost:8000 &
+    - php artisan serve &
+
+script:
+    - vendor/bin/phpunit
+    - php artisan dusk
