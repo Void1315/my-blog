@@ -2,7 +2,7 @@
 	<div>
 		<div class="view">
 			
-	        <p><b>以下是编辑器的内容：</b></p>
+	        <p><b>以下是编辑器的内容:</b></p>
 	        <div v-html="editorContent">
 	        </div>
 	        <hr>

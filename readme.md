@@ -65,7 +65,12 @@ server {
 ```
 7. 打包前端js文件
 `npm run build`
-8. 创建用户
+8. 生成符号链接
+```
+cd my-blog
+ln -s /项目目录/storage/app/public/ /项目目录/public/storage
+```
+9. 创建用户
 > 因为还没有写创建用户页面，所以先用接口代替。
 > 项目部署好后 url输入/yhy1315/init
 > 将会生成一个
