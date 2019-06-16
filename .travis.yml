@@ -7,7 +7,7 @@ before_install:
     - sudo apt-get install npm
     - npm config set strict-ssl false
     - sudo npm install -g n
-    - n v8.11.3
+    - sudo n v8.11.3
 php:
     - 7.2.16
 
