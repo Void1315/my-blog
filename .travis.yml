@@ -1,7 +1,6 @@
 language: php
 env:
 - TRAVIS_NODE_VERSION="8.11.3"
-- YHY="yhy1315"
 sudo: required
 php:
 - 7.2.16
@@ -28,11 +27,4 @@ before_install:
   -in id_rsa.enc -out ~\/.ssh/id_rsa -d
 - chmod 600 ~/.ssh/id_rsa
 after_success:
-  - ssh asahi@101.201.71.119 "~/autobash/my-blog"
-# before_script:
-#     - google-chrome-stable --headless --disable-gpu --remote-debugging-port=8000 http://localhost:8000 &
-#     - php artisan serve &
-
-# script:
-#     - vendor/bin/phpunit
-#     - php artisan dusk
+- ssh asahi@101.201.71.119 "~/autobash/my-blog"
