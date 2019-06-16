@@ -1,15 +1,13 @@
 language: php
 
+env:
+  - TRAVIS_NODE_VERSION="8.12.0"
+
 sudo: required
 
-before_install:
-    - sudo apt-get install nodejs
-    - sudo apt-get install npm
-    - npm config set strict-ssl false
-    - sudo npm install -g n
-    - sudo n v8.11.3
 php:
     - 7.2.16
+
 
 services:
     - mysql
@@ -18,6 +16,8 @@ addons:
     chrome: stable
 
 install:
+    - nvm install TRAVIS_NODE_VERSION
+    - nvm alias default TRAVIS_NODE_VERSION
     - mv .env.example .env
     - mysql -e 'create database vue_blog;'
     - composer self-update
