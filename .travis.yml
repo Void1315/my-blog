@@ -22,8 +22,8 @@ install:
     - mysql -e 'create database vue_blog;'
     - composer self-update
     - composer install --no-interaction --prefer-dist --no-suggest
-    - sudo npm install -g cnpm --registry=https://registry.npm.taobao.org
-    - sudo cnpm install
+    - npm install -g cnpm --registry=https://registry.npm.taobao.org
+    - cnpm install
     - npm run prod
     - php artisan key:generate
     - php artisan migrate
