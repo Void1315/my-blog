@@ -16,8 +16,8 @@ addons:
     chrome: stable
 
 install:
-    - nvm install TRAVIS_NODE_VERSION
-    - nvm alias default TRAVIS_NODE_VERSION
+    - nvm install $TRAVIS_NODE_VERSION
+    - nvm alias default $TRAVIS_NODE_VERSION
     - mv .env.example .env
     - mysql -e 'create database vue_blog;'
     - composer self-update
