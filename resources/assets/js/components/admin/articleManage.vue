@@ -79,6 +79,7 @@ module.exports={
 	},
 	methods:{
 		getData(page){
+			//
 			var self = this;
 			var url = "/admin/article/list";
 			if(page)
