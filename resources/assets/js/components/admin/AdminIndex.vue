@@ -99,7 +99,7 @@ module.exports = {
 	created:function(){	
 	},
 	mounted:function () {
-    }
+  }
 }
 
 </script>
