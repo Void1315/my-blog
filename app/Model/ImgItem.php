@@ -15,7 +15,7 @@ class ImgItem extends Model
 	}
 
 	public function showItem(){
-		$all = $this->all();
+		$all = $this->orderBy('created_at', 'desc')->get();
 		$all = $all->each(function ($item, $key) {
 			$item->images;
 		});

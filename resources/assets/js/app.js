@@ -110,7 +110,7 @@ const routes = [
   },
   {
     path:"/admin",
-    redirect: '/admin/article',
+    // redirect: '/admin/article',
     component: resolve=>require(["./components/admin/AdminIndex.vue"], resolve),
     children:[{
       path: 'article',

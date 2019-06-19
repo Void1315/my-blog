@@ -86,7 +86,7 @@
 /******/ 		if (__webpack_require__.nc) {
 /******/ 			script.setAttribute("nonce", __webpack_require__.nc);
 /******/ 		}
-/******/ 		script.src = __webpack_require__.p + "js/lazy/" + ({}[chunkId]||chunkId) + "." + {"0":"67962bb26544a950f331","1":"5dda24709a0825862d2d","2":"17769beceed80fa4d321","3":"4931359721ea0c600126","4":"64b08f665c9a5de9627b","5":"8629c313cfc04f7b8204","6":"e69c811585e0af283539","7":"af28171c837dfccaa891","8":"fc7534d91c9ee8bd3ee4","9":"843dc865d33d37d7b56e","10":"e5d378b6bc937ab3760a"}[chunkId] + ".js";
+/******/ 		script.src = __webpack_require__.p + "js/lazy/" + ({}[chunkId]||chunkId) + "." + {"0":"67962bb26544a950f331","1":"5dda24709a0825862d2d","2":"17769beceed80fa4d321","3":"4931359721ea0c600126","4":"64b08f665c9a5de9627b","5":"8629c313cfc04f7b8204","6":"1b3127851f5ee618ffac","7":"af28171c837dfccaa891","8":"fc7534d91c9ee8bd3ee4","9":"843dc865d33d37d7b56e","10":"e5d378b6bc937ab3760a"}[chunkId] + ".js";
 /******/ 		var timeout = setTimeout(onScriptComplete, 120000);
 /******/ 		script.onerror = script.onload = onScriptComplete;
 /******/ 		function onScriptComplete() {
@@ -1110,7 +1110,7 @@ var routes = [{ path: '/',
   }
 }, {
   path: "/admin",
-  redirect: '/admin/article',
+  // redirect: '/admin/article',
   component: function component(resolve) {
     return __webpack_require__.e/* require */(9).then(function() { var __WEBPACK_AMD_REQUIRE_ARRAY__ = [__webpack_require__(64)]; ((resolve).apply(null, __WEBPACK_AMD_REQUIRE_ARRAY__));}.bind(this)).catch(__webpack_require__.oe);
   },
