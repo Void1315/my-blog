@@ -41,8 +41,21 @@ class ImageController extends Controller
         return $data;
     }
 
-    public function listShow(){
-        return $this->imageModel->paginate(15);
+    /**
+     * 显示分页数据
+     *
+     * @param Request $request
+     * @return void
+     * @Description
+     * @example
+     * @author asahi
+     * @since
+     */
+    public function listShow(Request $request){
+        if($request->to_show == -1){
+            return $this->imageModel->paginate($request->page_sizes);
+        }
+        return $this->imageModel->where("to_show",$request->to_show)->paginate($request->page_sizes);
     }
 
     public function upload(Request $request){

@@ -1,5 +1,19 @@
 <template>
-  <div>
+  <div class="main">
+    <div class="from-box">
+      <el-form :inline="true" :model="formInline" class="form-inline">
+        <el-form-item label="图片作用">
+          <el-select v-model="formInline.to_show" @change="selectChange" placeholder="图片作用">
+            <el-option label="全部" value="-1"></el-option>
+            <el-option label="文章" value="0"></el-option>
+            <el-option label="相册" value="1"></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click.native="onSubmitImg">查询</el-button>
+        </el-form-item>
+      </el-form>
+    </div>
     <el-table
       :data="imageData"
       :border="true"
@@ -10,18 +24,10 @@
       <el-table-column prop="item_id" label="图片组" :formatter="show_item_id"></el-table-column>
       <el-table-column label="图像" prop="image">
         <template slot-scope="scope">
-          <img :src="scope.row.url" class="table-img">
+          <img :src="scope.row.url" class="table-img" />
         </template>
       </el-table-column>
-      <el-table-column
-        prop="to_show"
-				label="作用"
-        
-        :filter-method="filterImage"
-        :filters="[{text:'文章',value:0},{text:'相册',value:1}]"
-        align="center"
-        :formatter="show_matter"
-      ></el-table-column>
+      <el-table-column prop="to_show" label="作用" align="center" :formatter="show_matter"></el-table-column>
       <el-table-column label="操作" min-width="150">
         <template slot-scope="scope">
           <el-button size="mini" @click="handleEdit(scope.$index, scope.row.id)">编辑</el-button>
@@ -31,12 +37,14 @@
     </el-table>
     <el-row type="flex" class="row-bg" justify="center">
       <el-pagination
-        @current-change="handleCurrentChange"
-        :current-page="thisPage"
-        :page-size="15"
-        :pager-count="5"
-        layout="total, prev, pager, next, jumper"
-        :total="datanum"
+        @current-change="tableCurrentChange"
+        :current-page="pageData.current_page"
+        :page-size="pageData.per_page"
+        :page-sizes="[5,10,15,20,50,100]"
+        :page-count="pageData.last_page"
+        layout="sizes,total, prev, pager, next, jumper"
+        :total="pageData.total"
+        @size-change="tableSizeChange"
       ></el-pagination>
     </el-row>
   </div>
@@ -45,9 +53,32 @@
 module.exports = {
   data: function() {
     return {
+      formInline: {
+        //筛选表单
+        to_show: "全部"
+      },
       imageData: [], //图片数据
       datanum: 0,
       thisPage: 0,
+      tableFilter: {
+        //表格筛选的数据
+        to_show: -1, //作用
+        page_sizes: 10, //一页显示几条数据
+        current_page: 1 //当前页数
+      },
+      pageData: {
+        // 分页数据
+        current_page: 0, //当前页面
+        total: 0,
+        last_page: 0,
+        per_page: 10,
+        next_page_url: "",
+        last_page_url: "",
+        from: 0,
+        to: 0,
+        data: []
+      },
+      pageUrl: "", //分页地址
       img_item_num: [
         //imgitem中的数量
         //img_item:num
@@ -60,6 +91,46 @@ module.exports = {
     };
   },
   methods: {
+    /**
+     * 表格页数显示条数改变时
+     * pageSize:每页条数
+     */
+    tableSizeChange: function(pageSize) {
+      this.pageData.per_page = pageSize; //per_page
+      this.tableFilter.page_sizes = pageSize;
+      this.getData();
+    },
+    /**
+     * 表格当前页改变时
+     * pageIndex :当前页
+     */
+    tableCurrentChange: function(pageIndex) {
+      this.pageData.current_page = pageIndex;
+      this.tableFilter.current_page = pageIndex;
+      this.getPageData(pageIndex);
+      // this.getData()
+    },
+    //获得分页数据
+    getPageData: function(pageIndex) {
+      var url = this.pageUrl + "?page=" + pageIndex;
+      this.$ajax
+        .post(url, this.tableFilter)
+        .then(res => {
+          this.pageData = res.data;
+          this.imageData = this.pageData.data;
+          this.datanum = this.pageData.total;
+          this.pageUrl = res.data.path;
+          this.setPageDate();
+          this.setImgItemNum();
+        });
+    },
+
+    selectChange: function(value) {
+      this.tableFilter.to_show = value;
+    },
+    onSubmitImg: function() {
+      this.getData();
+    },
     show_item_id: function(row) {
       if (row.item_id) {
         return row.item_id;
@@ -67,19 +138,27 @@ module.exports = {
         return "空";
       }
     },
-    getData: function(page) {
-      var self = this;
+    /**
+     * data :object
+     */
+    getData: function() {
       var url = "/admin/image/list";
-      if (page) url = "/admin/image/list" + "?page=" + page;
-      this.$ajax.get(url).then((res)=> {
-        self.imageData = res.data.data;
-        self.datanum = res.data.total;
-				self.setImgItemNum();
-				console.log(this.imageData)
-			});
-			
+      this.$ajax.post(url, this.tableFilter).then(res => {
+        this.pageData = res.data;
+        this.imageData = this.pageData.data;
+        this.datanum = this.pageData.total;
+        this.pageUrl = res.data.path;
+        this.setPageDate();
+        this.setImgItemNum();
+      });
     },
+    /**
+     * 更新分页数据
+     */
+    setPageDate: data => {},
     setImgItemNum: function() {
+      this.img_item_num = [];
+      this.b_img_item = [];
       for (let index in this.imageData) {
         if (this.imageData[index].item_id) {
           if (!this.img_item_num[this.imageData[index].item_id]) {
@@ -100,9 +179,6 @@ module.exports = {
     handleDelete: function(index, row) {
       console.log(index, row, this.imageData[index]);
     },
-    handleCurrentChange: function(val) {
-      this.getData(val);
-    },
     objectSpanMethod: function({ row, column, rowIndex, columnIndex }) {
       if (columnIndex === 1) {
         if (this.img_item_num[row.item_id]) {
@@ -116,10 +192,6 @@ module.exports = {
         }
       }
     }
-  },
-  filterImage: function(value, row, column) {
-    console.log(11);
-    return row.to_show === value;
   },
   mounted: function() {
     var self = this;

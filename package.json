@@ -25,7 +25,7 @@
     "vue-router": "^3.0.1"
   },
   "dependencies": {
-    "element-ui": "^2.4.6",
+    "element-ui": "^2.4.11",
     "wangeditor": "^3.1.1",
     "v-viewer": "^1.2.1"
   }
