@@ -1,5 +1,7 @@
 let mix = require('laravel-mix');
-
+const {
+    CleanWebpackPlugin
+} = require("clean-webpack-plugin");
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -12,19 +14,25 @@ let mix = require('laravel-mix');
  */
 
 mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+    .sass('resources/assets/sass/app.scss', 'public/css');
 mix.webpackConfig({
     output: {
         publicPath: "/",
         chunkFilename: 'js/lazy/[name].[chunkhash].js'
     },
+
+    plugins: [
+        new CleanWebpackPlugin({
+            cleanOnceBeforeBuildPatterns: ['js/lazy/*','!js/lazy/.gitignore']
+        })
+    ],
     externals: {
-    	'vue': 'Vue',
-    	'vue-router': 'VueRouter',
-    	'element-ui': 'ELEMENT',
-    	"axios":"axios",
-        "vue-lazyload":"VueLazyload",
+        'vue': 'Vue',
+        'vue-router': 'VueRouter',
+        'element-ui': 'ELEMENT',
+        "axios": "axios",
+        "vue-lazyload": "VueLazyload",
         "jquery": 'jQuery',
         "wangEditor": "wangEditor"
- 	}
+    }
 });
