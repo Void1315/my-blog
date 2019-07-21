@@ -17,7 +17,7 @@
 	  <router-view></router-view>
 	</div>
 	<script src="https://cdn.bootcss.com/vue/2.5.7/vue.min.js"></script>
-	<script src="https://unpkg.com/element-ui@2.4.6/lib/index.js"></script>
+	<script src="https://unpkg.com/element-ui@2.4.11/lib/index.js"></script>
 	<script src="https://cdn.bootcss.com/vue-router/3.0.1/vue-router.js"></script>
 	<script src="https://cdn.bootcss.com/axios/0.18.0/axios.min.js"></script>
 	<script type="text/javascript" defer="defer" src="https://unpkg.com/wangeditor@3.1.1/release/wangEditor.min.js"></script>

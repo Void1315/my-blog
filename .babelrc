@@ -1,5 +1,9 @@
 {
-  "presets": [["es2015", { "modules": false }]],
+  "presets": [["env", {
+    "targets": {
+      "browsers": ["last 2 versions", ">=1%"]
+    }
+  }]],
   "plugins": [
     [
       "syntax-dynamic-import",
