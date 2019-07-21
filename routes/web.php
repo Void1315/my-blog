@@ -37,7 +37,8 @@ Route::middleware(['auth'])->namespace('Blog')->group(function(){
 	Route::get("/admin/article/solid/delete/{id}","ArticleController@solidDelete");//硬删除文章
 	Route::get("/admin/article/recyclebin/index","ArticleController@recycleBinShow");//文章回收站展示
 	Route::get("/admin/image/recyclebin/index","ImageController@recycleBinShow");//图片回收站展示
-	Route::get("/admin/image/list","ImageController@listShow");
+	Route::any("/admin/image/list","ImageController@listShow");//图片管理分页
+	Route::post("/admin/image/delete","ImageController@deleteImage");//删除图片
 	Route::get("/admin/type/list","TagController@show");
 	Route::post('/create/article','ArticleController@create');//创建文章
 	Route::post("/edit/article/{id}","ArticleController@edit");//修改文章
