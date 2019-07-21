@@ -70,6 +70,7 @@ class ImageController extends Controller
       $data = $this->imageModel->onlyTrashed()->get();
       return response()->json($data);
     }
+    
     /**
      * 删除图片
      *  POST

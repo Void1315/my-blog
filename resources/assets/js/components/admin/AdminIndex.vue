@@ -12,8 +12,8 @@
  				  <el-col>
 				    <el-menu
 				      class="el-menu-vertical-demo"
-				      :default-active="$route.path"
-				      router="true"
+				      :default-active="active_index"
+					  @select="selectMenu"
 				      background-color="#545c64"
 				      text-color="#fff"
 				      active-text-color="#ffd04b" style="border: none;">
@@ -92,11 +92,16 @@
 module.exports = {
 	data:function(){
 		return{
+			active_index:this.$route.path,
 		}
 	},
 	methods: {
+		selectMenu:function(index,indexPath){
+			this.$router.push(index)
+			this.active_index = this.$route.path
+		}
 	},
-	created:function(){	
+	created:function(){
 	},
 	mounted:function () {
   }
