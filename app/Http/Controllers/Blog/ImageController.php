@@ -70,5 +70,31 @@ class ImageController extends Controller
       $data = $this->imageModel->onlyTrashed()->get();
       return response()->json($data);
     }
+    /**
+     * 删除图片
+     *  POST
+     * @param Request $request
+     * @return void
+     * @Description
+     * @example
+     * @author asahi
+     * @since
+     */
+    public function deleteImage(Request $request){
+        $image_id = $request->image_id;//图片ID
+        $image = $this->imageModel->find($image_id);
+        $item_id = $image->item_id;
+        $image->delete();
+        if($this->imageModel->where("item_id",$item_id)->count() == 0){
+            //如果图片组里的图片全部删除完 则删除图片组
+            $this->itemModel->find($item_id)->delete();
+        }
+        $data = array(
+            "code"=>"200",
+            "msg"=>"success",
+            "data"=>$image_id
+        );
+        return $data;
+    }
 
 }

@@ -108,21 +108,18 @@ module.exports = {
       this.pageData.current_page = pageIndex;
       this.tableFilter.current_page = pageIndex;
       this.getPageData(pageIndex);
-      // this.getData()
     },
     //获得分页数据
     getPageData: function(pageIndex) {
       var url = this.pageUrl + "?page=" + pageIndex;
-      this.$ajax
-        .post(url, this.tableFilter)
-        .then(res => {
-          this.pageData = res.data;
-          this.imageData = this.pageData.data;
-          this.datanum = this.pageData.total;
-          this.pageUrl = res.data.path;
-          this.setPageDate();
-          this.setImgItemNum();
-        });
+      this.$ajax.post(url, this.tableFilter).then(res => {
+        this.pageData = res.data;
+        this.imageData = this.pageData.data;
+        this.datanum = this.pageData.total;
+        this.pageUrl = res.data.path;
+        this.setPageDate();
+        this.setImgItemNum();
+      });
     },
 
     selectChange: function(value) {
@@ -150,6 +147,7 @@ module.exports = {
         this.pageUrl = res.data.path;
         this.setPageDate();
         this.setImgItemNum();
+        console.log()
       });
     },
     /**
@@ -165,7 +163,7 @@ module.exports = {
             this.img_item_num[this.imageData[index].item_id] = 0;
           }
           this.img_item_num[this.imageData[index].item_id]++;
-          this.b_img_item[this.imageData[index].item_id] = true;
+          // this.b_img_item[this.imageData[index].item_id] = true;
         }
       }
     },
@@ -176,8 +174,48 @@ module.exports = {
     handleEdit: function(index, row) {
       console.log(index, row);
     },
-    handleDelete: function(index, row) {
-      console.log(index, row, this.imageData[index]);
+    handleDelete: function(index, image_id) {
+      this.$confirm("是否图片移动至回收站?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      })
+        .then(() => {
+          new Promise((resolve, reject) => {
+            var url = "admin/image/delete";
+            var data = {
+              image_id: image_id
+            };
+            this.$ajax
+              .post(url, data)
+              .then(res => {
+                resolve(res);
+              })
+              .catch(error => {
+                reject(error);
+              });
+          })
+            .then(res => {
+              this.imageData.splice(index,1)
+              this.setImgItemNum()
+              this.$message({
+                type: "success",
+                message: "删除成功!"
+              });
+            })
+            .catch(error => {
+              this.$message({
+                type: "error",
+                message: "删除失败!"
+              });
+            });
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "已取消删除"
+          });
+        });
     },
     objectSpanMethod: function({ row, column, rowIndex, columnIndex }) {
       if (columnIndex === 1) {

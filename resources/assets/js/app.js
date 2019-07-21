@@ -107,12 +107,8 @@ const routes = [{
   {
     path: "/admin",
     component: resolve => require(["./components/admin/AdminIndex.vue"], resolve),
-    children: [
-      {
-        path: '/',
-        component: resolve => require(["./components/admin/articleUpload.vue"], resolve),
-      },
-      {
+    redirect: '/admin/article',
+    children: [{
         path: 'article',
         component: resolve => require(["./components/admin/articleUpload.vue"], resolve),
       },
@@ -151,7 +147,8 @@ const router = new VueRouter({
   routes // (缩写) 相当于 routes: routes
 })
 router.beforeEach((to, from, next) => {
-  if (to.path == "/admin" || (to.matched.lenght != undefined && to.matched[0].path == "/admin")) {
+  var pattern = /^\/admin/g;
+  if (pattern.test(to.path)||to.path == "/admin" || (to.matched.lenght != undefined && to.matched[0].path == "/admin")) {
     if (sessionStorage.getItem("check"))
       next()
     axios.get("/check").then(function (res) {
