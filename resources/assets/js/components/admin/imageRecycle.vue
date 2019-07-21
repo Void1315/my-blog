@@ -48,10 +48,10 @@ module.exports = {
       else return "文章";
     },
     //恢复图片
-    handleRestore:  function() {
+    handleRestore: async function() {
       var url = "/admin/image/recyclebin/index";
       var data = {};
-      var res =  this.$ajax.get(url, data);
+      var res = await this.$ajax.get(url, data);
       console.log(res);
     }
   },
