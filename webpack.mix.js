@@ -23,6 +23,7 @@ mix.webpackConfig({
 
     plugins: [
         new CleanWebpackPlugin({
+            verbose: true,
             cleanOnceBeforeBuildPatterns: ['js/lazy/*','!js/lazy/.gitignore']
         })
     ],
