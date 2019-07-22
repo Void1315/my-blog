@@ -1,6 +1,6 @@
 <template>
 	<div class="content" id="yhy">
-		<article-over v-for="article in data" :article="article" v-loading="loading">
+		<article-over v-for="(article,index) in data" :key="index" :article="article" v-loading="loading">
 		</article-over>
 		<hr class="hidden-md-and-up">
 	</div>
