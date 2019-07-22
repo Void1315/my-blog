@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.com/Void1315/my-blog.svg?branch=master)](https://travis-ci.com/Void1315/my-blog) 
 ##自己用来学习vue与laravel搭建的个人blog
 *搭建流程*  
 1. clone到本地
@@ -7,7 +8,7 @@ git clone git@github.com:Void1315/my-blog.git
 2. 下载必要文件
 ```
 composer install
-npm install //或推荐cnpm install
+cnpm install
 ```
 3. 创建.env文件设置您的mysql数据库等操作
 ```
