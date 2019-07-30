@@ -1,5 +1,5 @@
 <template>
-  <div class="content" id="yhy">
+  <div class="content" id="yhy" v-loading="loading">
     <article-over
       v-for="(article,index) in data"
       :key="index"
@@ -11,35 +11,36 @@
 </template>
 
 <script type="text/javascript">
-	import articleOver from "./ArticleOverview";
-	module.exports = {
-	components: {
-		articleOver
-	},
-	data: function() {
-		return {
-		data: "",
-		loading: true
-		};
-	},
-	methods: {
-		getData() {
-		var self = this;
-		this.$ajax.get("/article/overview").then(function(response) {
-			self.data = response.data;
-			self.loading = false;
-		});
-		}
-	},
-	mounted: function() {
-		var self = this;
-		this.$nextTick(function() {
-		self.getData();
-		});
-	}
-	};
+import articleOver from "./ArticleOverview";
+module.exports = {
+  components: {
+    articleOver
+  },
+  data: function() {
+    return {
+      data: "",
+      loading: true
+    };
+  },
+  methods: {
+    getData() {
+      var self = this;
+      this.$ajax.get("/article/overview").then(function(response) {
+        self.data = response.data;
+        self.loading = false;
+      });
+    }
+  },
+  mounted: function() {
+    var self = this;
+    this.$nextTick(function() {
+      self.getData();
+    });
+  }
+};
 </script>
 
 <style lang="scss" scoped="" type="text/css">
 @import "../../sass/app.scss";
+
 </style>

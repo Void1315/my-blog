@@ -1,23 +1,43 @@
 import IndexContent from "../components/IndexContent.vue"
 import VueRouter from 'vue-router';
 import { Loading } from 'element-ui';
+let MyLoadind = {
+    loadingInstance:null,
+    options:{
+        // target:"#yhy",
+    },
+    show:function(){
+        console.log("开始加载")
+        this.loadingInstance = Loading.service(this.options);
+    },
+    resolve(resolve) {//加载完成隐藏loading组件
+        return component=>{
+            setTimeout(()=>{
+                this.loadingInstance.close()//关闭loading组件
+                console.log("加载完成")
+                resolve(component);
+            }, 10)
+        }
+    }
+}
 const routes = [{
         path: '/',
-        component: resolve => require(["../components/index.vue"], resolve),
-        loading: Loading,
+        component: resolve => {
+            MyLoadind.show()
+            require(["../components/index.vue"], MyLoadind.resolve(resolve))
+        },
         children: [{
                 path: '',
-                loading: Loading,
-                component: IndexContent,
+                component: resolve => {
+                    MyLoadind.show()
+                    require(["../components/IndexContent.vue"], MyLoadind.resolve(resolve))},
             },
             {
                 path: "article/:id",
-                loading: Loading,
-                component: resolve => require(["../components/Article.vue"], resolve),
+                component: resolve => {MyLoadind.show();require(["../components/Article.vue"], MyLoadind.resolve(resolve))},
             },
             {
                 path: "image",
-                loading: Loading,
                 component: resolve => require(["../components/ImageTime.vue"], resolve),
             }
         ],
