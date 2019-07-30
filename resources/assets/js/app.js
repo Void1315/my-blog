@@ -14,15 +14,19 @@ window.Vue = require('vue');
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+import './functions'
 
 import router from './routes'
-import ElementUI from 'element-ui';
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);
-import axios from 'axios';
-import 'element-ui/lib/theme-chalk/index.css'
+
+import ElementUI from 'element-ui';
+// import 'element-ui/lib/theme-chalk/index.css'
 import 'element-ui/lib/theme-chalk/display.css';
 import 'element-ui/lib/theme-chalk/base.css';
+
+import axios from 'axios';
+
 //图片懒加载
 import VueLazyLoad from 'vue-lazyload';
 Vue.use(VueLazyLoad, {
@@ -30,7 +34,7 @@ Vue.use(VueLazyLoad, {
   loading: 'img/loading.gif',
   attempt: 3
 });
-import './functions'
+
 import 'viewerjs/dist/viewer.css';
 import Viewer from 'v-viewer';
 Vue.use(Viewer);
