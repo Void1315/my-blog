@@ -64,11 +64,11 @@ export default {
         var item_time = new Date(String(data[i].created_at));
         var year = item_time.getFullYear();
         var month =
-          item_time.getMonth() > 10
+          item_time.getMonth() >= 10
             ? item_time.getMonth() + 1
             : "0" + (item_time.getMonth() + 1);
         var day =
-          item_time.getDate() > 10
+          item_time.getDate() >= 10
             ? item_time.getDate()
             : "0" + item_time.getDate();
         var one_item = year + "-" + month;

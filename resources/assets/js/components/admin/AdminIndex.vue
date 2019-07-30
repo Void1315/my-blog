@@ -50,7 +50,7 @@
 		</el-aside>
 		<el-container>
 			<el-header class="show-phone admin-header">
-				<el-menu  :default-active="$route.path" router="true" class="el-menu-demo hander-menu" mode="horizontal">
+				<el-menu  :default-active="$route.path" :router="true" class="el-menu-demo hander-menu" mode="horizontal">
 				  <el-submenu index="1">
 				        <template slot="title">
 				          <i class="el-icon-document"></i>
@@ -73,7 +73,7 @@
 				          <el-menu-item index="/admin/image/recycle">回收站</el-menu-item>
 				        </el-menu-item-group>
 				      </el-submenu>
-				      <el-menu-item index="3">
+				      <el-menu-item index="/">
 				        <i class="el-icon-view"></i>
 				        <span slot="title">评论</span>
 				      </el-menu-item>
