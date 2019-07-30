@@ -71,7 +71,8 @@ a{
     border: $border-style;
     background-color: white;
     border-radius: 3px;
-    box-shadow: $poor-shadow;
+	box-shadow: $poor-shadow;
+	min-height: 50px;
 }
 .side-triangle{
 	float: left;

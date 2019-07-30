@@ -13,8 +13,6 @@
 			</div>
 			<div class="head-home-box">
 				<a href="/#/">
-					
-				
 				<i class="fa fa-home"></i>
 				<span class="hidden-md-and-down">Home</span>
 				</a>

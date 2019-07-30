@@ -62,7 +62,8 @@
 	module.exports={
 	    data:function(){
 	     	return{
-	     		data:'',
+				 data:'',
+				 getUrl:'',
 	     		loading:true,
 	    	}
 	 	},
@@ -71,7 +72,8 @@
 	 			var self = this;
 	 			this.$ajax.get("/article/get/"+this.$route.params.id).then(function(response){
 	 				 self.data = response.data;
-	 				 self.loading = false;
+					  self.loading = false;
+					  self.getUrl = response.data.img_url
 	 			}).catch(function(error){
 	 				if(error.response){
 	 					if(error.response.status == 404){

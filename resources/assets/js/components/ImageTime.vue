@@ -1,5 +1,5 @@
 <template>
-  <div class="content">
+  <div class="content" v-loading="loading">
     <vue-preview :slides="slide1" @close="handleClose"></vue-preview>
     <timeline>
       <div v-for="(items,index) in testData" :key="index">
@@ -28,6 +28,7 @@ import { Timeline, TimelineItem, TimelineTitle } from "vue-cute-timeline";
 export default {
   data: function() {
     return {
+      loading:true,
       pre_item: 0,
       testData: []
     };
@@ -50,6 +51,7 @@ export default {
       this.$ajax
         .get("/image/item")
         .then(function(res) {
+          self.loading = false
           self.setData(res.data);
         })
         .catch(function(res) {
@@ -64,11 +66,11 @@ export default {
         var item_time = new Date(String(data[i].created_at));
         var year = item_time.getFullYear();
         var month =
-          item_time.getMonth() > 10
+          item_time.getMonth() >= 10
             ? item_time.getMonth() + 1
             : "0" + (item_time.getMonth() + 1);
         var day =
-          item_time.getDate() > 10
+          item_time.getDate() >= 10
             ? item_time.getDate()
             : "0" + item_time.getDate();
         var one_item = year + "-" + month;
