@@ -4,17 +4,20 @@ import { Loading } from 'element-ui';
 const routes = [{
         path: '/',
         component: resolve => require(["../components/index.vue"], resolve),
-
+        loading: Loading,
         children: [{
                 path: '',
+                loading: Loading,
                 component: IndexContent,
             },
             {
                 path: "article/:id",
+                loading: Loading,
                 component: resolve => require(["../components/Article.vue"], resolve),
             },
             {
                 path: "image",
+                loading: Loading,
                 component: resolve => require(["../components/ImageTime.vue"], resolve),
             }
         ],
