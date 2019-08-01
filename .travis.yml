@@ -17,7 +17,7 @@ install:
 - composer self-update
 - composer install --no-interaction --prefer-dist --no-suggest
 - npm install -g cnpm --registry=https://registry.npm.taobao.org
-- cnpm install
+- travis_wait cnpm install
 - npm run prod
 - php artisan key:generate
 - php artisan migrate

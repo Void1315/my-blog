@@ -17,8 +17,8 @@
 	<div id="app" style="height: 100%;">
 	  <router-view></router-view>
 	</div>
-	<script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
-	<!-- <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script> -->
+	<!-- <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script> -->
+	<script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
 	<script src="https://cdn.bootcss.com/element-ui/2.10.1/index.js"></script>
 	<script src="https://cdn.bootcss.com/vue-router/3.0.7/vue-router.js"></script>
 	<script src="https://cdn.bootcss.com/axios/0.19.0/axios.min.js"></script>

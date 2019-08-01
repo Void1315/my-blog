@@ -34,7 +34,9 @@ Vue.use(VueLazyLoad, {
   loading: 'img/loading.gif',
   attempt: 3
 });
-
+import mavonEditor from "mavon-editor";
+import "mavon-editor/dist/css/index.css";
+Vue.use(mavonEditor)
 import 'viewerjs/dist/viewer.css';
 import Viewer from 'v-viewer';
 Vue.use(Viewer);
