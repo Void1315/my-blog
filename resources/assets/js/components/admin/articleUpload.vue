@@ -5,8 +5,6 @@
         ref="md"
         id="editor"
         v-model="form.text"
-        @change="onChange"
-        @htmlCode="htmlCode"
         @imgAdd="imgAdd"
       />
     </div>
@@ -109,15 +107,9 @@ module.exports = {
         this.$refs.md.$img2Url(pos, res.data.data[0]);
       })
     },
-    onChange(val) {
-    },
-    htmlCode(val) {
-      console.log(val);
-    },
     handleClose(tag) {
       this.form.tages.splice(this.form.tages.indexOf(tag), 1);
     },
-
     showInput() {
       this.inputVisible = true;
       this.$nextTick(_ => {

@@ -14,7 +14,7 @@ const {
  */
 
 mix.js('resources/assets/js/app.js', 'public/js')
-    .sass('resources/assets/sass/app.scss', 'public/css').sourceMaps();
+    .sass('resources/assets/sass/app.scss', 'public/css');
 mix.webpackConfig({
     output: {
         publicPath: "/",
@@ -34,6 +34,5 @@ mix.webpackConfig({
         "axios": "axios",
         "vue-lazyload": "VueLazyload",
         "jquery": 'jQuery',
-        "wangEditor": "wangEditor"
     }
 });

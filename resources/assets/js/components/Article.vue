@@ -66,14 +66,13 @@
   </div>
 </template>
 <script>
-const marked = require("marked");
+import marked from 'marked'
 import hljs from "highlight.js";
 import "highlight.js/styles/github.css";
 module.exports = {
   computed: {
     compiledMarkdown: function() {
       return marked(this.data.text, {
-        // sanitize: true,
         highlight: function(code) {
           return hljs.highlightAuto(code).value;
         }
