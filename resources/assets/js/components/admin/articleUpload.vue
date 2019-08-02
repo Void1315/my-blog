@@ -4,11 +4,10 @@
       <mavon-editor
         ref="md"
         id="editor"
-        v-model="editorContent"
+        v-model="form.text"
         @change="onChange"
         @htmlCode="htmlCode"
         @imgAdd="imgAdd"
-        @imgDel="$imgDel"
       />
     </div>
     <div class="form-article">
@@ -57,13 +56,18 @@
   </div>
 </template>
 <script>
+import {mavonEditor} from "mavon-editor";
+import "mavon-editor/dist/css/index.css";
+import {tagList,getArticle,uploadImage,createArticle} from '../../api/api.js'
 module.exports = {
+  components:{
+    mavonEditor
+  },
   data: function() {
     return {
-      editorContent: "",
       form: {
         title: "",
-        text: this.editorContent,
+        text: "",
         tages: [],
         img_id: this.img_id,
         fileList: []
@@ -97,21 +101,16 @@ module.exports = {
   methods: {
     imgAdd(pos, $file) {
       // 第一步.将图片上传到服务器.
-      var formdata = new FormData();
-      formdata.append("image", $file);
-      this.$ajax({
-		
-        url: "/create/image",
-        method: "post",
-        data: {formdata,_token:this.img_data._token,},
-        headers: { "Content-Type": "multipart/form-data" }
-      }).then(url => {
-        // 第二步.将返回的url替换到文本原位置![...](0) -> ![...](url)
-        // $vm.$img2Url 详情见本页末尾
-        $vm.$img2Url(pos, url);
-      });
+      var data = new FormData();
+      data.append("image", $file);
+      data.append('show',0)
+      uploadImage(data).then(res=>{
+        console.log(res.data.data[0])
+        this.$refs.md.$img2Url(pos, res.data.data[0]);
+      })
     },
-    onChange(val) {},
+    onChange(val) {
+    },
     htmlCode(val) {
       console.log(val);
     },
@@ -127,15 +126,14 @@ module.exports = {
     },
     //初始化文章修改
     initArticleEditor() {
-      let id = this.$route.params.id;
-      this.$ajax.get("/admin/article/get/" + id).then(res => {
+      getArticle(this.$route.params.id).then(res=>{
         for (var i = 0; i < res.data.tages.length; i++) {
           this.form.tages.push(res.data.tages[i].name);
         }
         this.form = { ...res.data };
-        this.editorContent = res.data.text;
+        this.form.text = res.data.text;
         this.form.fileList.push({ name: "封面", url: res.data.img_url });
-      });
+      })
     },
     querySearch(queryString, cb) {
       var restaurants = this.restaurants;
@@ -154,17 +152,14 @@ module.exports = {
       };
     },
     loadAll() {
-      var data;
       var arr = [];
-      var self = this;
-      this.$ajax.get("/admin/type/list").then(function(res) {
-        data = res.data;
+      tagList().then(res=>{
         for (var i = 0; i < res.data.length; i++) {
           var item = { value: res.data[i].name };
           arr.push(item); //属性
         }
-        self.restaurants = arr;
-      });
+        this.restaurants = arr;
+      })
     },
     handleSelect(item) {
       this.handleInputConfirm();
@@ -189,22 +184,15 @@ module.exports = {
     },
     resetForm() {
       this.$refs["form"].resetFields();
-      this.editorContent = "";
-      this.editor.txt.html("");
     },
     submitForm() {
-      var self = this;
-      this.$ajax({
-        method: "post",
-        url: "/create/article",
-        data: this.form
-      }).then(function(response) {
-        self.$message({
+      createArticle(this.form).then(res=>{
+        this.$message({
           message: "文章上传成功！",
           type: "success"
         });
-        self.resetForm();
-      });
+        this.resetForm();//清除
+      })
     },
     editForm() {
       var self = this;
