@@ -24,9 +24,8 @@ import ElementUI from 'element-ui';
 // import 'element-ui/lib/theme-chalk/index.css'
 import 'element-ui/lib/theme-chalk/display.css';
 import 'element-ui/lib/theme-chalk/base.css';
-
 import axios from 'axios';
-
+// import marked from "marked";
 //图片懒加载
 import VueLazyLoad from 'vue-lazyload';
 Vue.use(VueLazyLoad, {
@@ -34,7 +33,6 @@ Vue.use(VueLazyLoad, {
   loading: 'img/loading.gif',
   attempt: 3
 });
-
 import 'viewerjs/dist/viewer.css';
 import Viewer from 'v-viewer';
 Vue.use(Viewer);

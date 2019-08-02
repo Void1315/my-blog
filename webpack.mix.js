@@ -34,6 +34,5 @@ mix.webpackConfig({
         "axios": "axios",
         "vue-lazyload": "VueLazyload",
         "jquery": 'jQuery',
-        "wangEditor": "wangEditor"
     }
 });

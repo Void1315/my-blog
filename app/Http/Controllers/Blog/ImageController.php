@@ -57,12 +57,21 @@ class ImageController extends Controller
         }
         return $this->imageModel->where("to_show",$request->to_show)->paginate($request->page_sizes);
     }
-
+    /**
+     * 上传图片
+     *
+     * @param Request $request
+     * @return void
+     * @Description
+     * @example
+     * @author asahi
+     * @since
+     */
     public function upload(Request $request){
         $this->validate($request,[
-            "image" => "required|image"
+            "image" => "required|image",
         ]);
-        $arr_url = $this->imageModel->saveInsertImg($request->image,0)->url;
+        $arr_url = $this->imageModel->saveInsertImg($request->image,0)->zip_url;
         return json_encode(array("errno"=>0,"data"=>array($arr_url)));
     }
 

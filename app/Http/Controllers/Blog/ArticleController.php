@@ -22,6 +22,7 @@ class ArticleController extends Controller
     	$this->imageModel = new Image();
     }
     
+
     public function index(Request $request){
       $total = $this->articleModel->count();
       $page = $request->page;
@@ -43,7 +44,7 @@ class ArticleController extends Controller
     		'title' => "required|string|max:50",
     		'text' => "required|string",
     		'tages' => "required|array",
-    		"img_id" => "required|integer"
+    		"img_id" => "required|integer"//文章封面
    		]);
    		$id_list = $this->tagModel->createTages($request->tages);
    		$id = $this->articleModel->createOne($request->title,$request->text,$request->img_id);
