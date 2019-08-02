@@ -42,9 +42,10 @@ Route::middleware(['auth'])->namespace('Blog')->group(function(){
 	Route::get("/admin/type/list","TagController@show");
 	Route::post('/create/article','ArticleController@create');//创建文章
 	Route::post("/edit/article/{id}","ArticleController@edit");//修改文章
-	Route::post("/create/image",'ImageController@create');
+	Route::post("/create/image",'ImageController@create');//创建文章封面
+	Route::post("/upload/image","ImageController@upload");//上传图片 与上面接口返回值不同
 	Route::post("/create/imgitem","ImageController@createItem");
-	Route::post("/upload/image","ImageController@upload");//上传图片
+	
 });
 Route::get("/",function(){
 	return view('index');
