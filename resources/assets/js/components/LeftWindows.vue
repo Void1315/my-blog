@@ -152,7 +152,8 @@
 		height: 100%;
 		position:fixed;
 		background-color: $c-color;
-		display: inline-block;
+		display: inline-flex;
+		flex-direction: column;
 		transition: all .5s;
 		left:0px;
 		z-index: 3;
@@ -231,6 +232,7 @@
 	}
 	.left-bot-box{
 		@extend .item-ctent;
+		flex:1;
 	    flex-direction: column;
 	}
 	.left-foot-box{
@@ -270,7 +272,7 @@
 	}
 }
 .foot-info-box{
-	position: absolute;
+	position: relative;
     bottom: 0px;
     width: 100%;
     margin-bottom: 10px;
@@ -308,6 +310,14 @@
 		}
 	}
 	
+}
+@media #{$medie-type} and (max-height: 700px){
+	.left-bot-box{
+		p{
+			margin: 0;
+			margin-top: 10px;
+		}
+	}
 }
 @media #{$medie-type} and (min-width: $phone-size){
 	.shadow{
