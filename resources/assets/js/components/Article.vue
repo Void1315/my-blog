@@ -119,7 +119,7 @@ module.exports = {
         });
     },
     toAssent() {
-      isAssent = "isAssent_" + this.$route.params.id;
+      let isAssent = "isAssent_" + this.$route.params.id;
       var self = this;
       if (document.cookie.indexOf(isAssent + "=") == -1) {
         document.cookie = isAssent + "=true";
