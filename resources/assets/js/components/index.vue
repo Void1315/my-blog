@@ -24,7 +24,7 @@ module.exports = {
   components: {
     toTop,
     leftWindows,
-    myHeader
+    myHeader,
   },
   data: function() {
     return {

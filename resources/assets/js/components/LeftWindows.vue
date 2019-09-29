@@ -56,15 +56,13 @@
 						<div class="left-foot-box">
 							<div class="left-foot-left">
 								<i class="fa fa-copyright"></i>
-								<span>2018</span>
+								<span>2019 <a style="color:#636b6f;" href="http://www.beian.miit.gov.cn" target="_blink">豫ICP备17029062号</a></span>
 							</div>
 							<div class="left-foot-right">
 								<span>by Asahi</span>
 							</div>
 						</div>
 					</div>
-					
-				
 			</div>
 			
 		</transition>
