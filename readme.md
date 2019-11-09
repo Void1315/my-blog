@@ -33,6 +33,7 @@ server {
  listen 443;#监听的端口
  server_name l.vue-blog.yuhaoyan.cn;
  root /var/www/my-blog/public;#改为你项目/piblic 路径
+ 
  ssl on;
  ssl_certificate  /home/asahi/文档/ssl证书/l.vue-blog.yuhaoyan.cn/2148558_l.vue-blog.yuhaoyan.cn.pem;# 改成你的证书的名字
  ssl_certificate_key /home/asahi/文档/ssl证书/l.vue-blog.yuhaoyan.cn/2148558_l.vue-blog.yuhaoyan.cn.key;# 你的证书的名字
