@@ -58,10 +58,6 @@
           </div>
         </el-row>
       </div>
-
-      <div class="comment-box">
-        <div id="SOHUCS" v-bind:sid="$route.params.id"></div>
-      </div>
     </div>
   </div>
 </template>
@@ -149,53 +145,6 @@ module.exports = {
       self.getData();
     });
   },
-  beforeMount: function() {
-    (function() {
-      var appid = "cytMq1XyR";
-      var conf = "prod_8abf39185ea6bc48f81b87e55d3de736";
-      var width = window.innerWidth || document.documentElement.clientWidth;
-      if (width < 960) {
-        var script = document.createElement("script");
-        script.src =
-          "https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=" +
-          appid +
-          "&conf=" +
-          conf +
-          "";
-        script.id = "changyan_mobile_js";
-        script.charset = "utf";
-        document.head.appendChild(script);
-      } else {
-        var loadJs = function(d, a) {
-          var c =
-            document.getElementsByTagName("head")[0] ||
-            document.head ||
-            document.documentElement;
-          var b = document.createElement("script");
-          b.setAttribute("type", "text/javascript");
-          b.setAttribute("charset", "UTF-8");
-          b.setAttribute("src", d);
-          if (typeof a === "function") {
-            if (window.attachEvent) {
-              b.onreadystatechange = function() {
-                var e = b.readyState;
-                if (e === "loaded" || e === "complete") {
-                  b.onreadystatechange = null;
-                  a();
-                }
-              };
-            } else {
-              b.onload = a;
-            }
-          }
-          c.appendChild(b);
-        };
-        loadJs("https://changyan.sohu.com/upload/changyan.js", function() {
-          window.changyan.api.config({ appid: appid, conf: conf });
-        });
-      }
-    })();
-  }
 };
 </script>
 
@@ -302,6 +251,8 @@ module.exports = {
   pre {
     background-color: #f8f8f8 !important;
     padding: 5px 15px;
+    word-wrap: break-word;
+    white-space: normal;
   }
 }
 </style>
