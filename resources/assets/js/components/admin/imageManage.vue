@@ -206,14 +206,14 @@ module.exports = {
     },
     setImgItemNum: function() {
       this.img_item_num = [];
-      this.b_img_item = new Array(this.imageData.length).fill(false)
+      this.b_img_item = new Array(this.imageData.length).fill(false);
       for (let index in this.imageData) {
         if (this.imageData[index].item_id) {
           //如果存在分组
           if (!this.img_item_num[this.imageData[index].item_id]) {
             //如果是第一个则定义为0
             this.img_item_num[this.imageData[index].item_id] = 0;
-            this.b_img_item[index] = true
+            this.b_img_item[index] = true;
           }
           //此分组数量++
           this.img_item_num[this.imageData[index].item_id]++;
@@ -222,19 +222,24 @@ module.exports = {
     },
     objectSpanMethod: function({ row, column, rowIndex, columnIndex }) {
       if (columnIndex === 1) {
+        if (!row.item_id) {
+          return {
+            rowspan: 1,
+            colspan: 1
+          };
+        }
         if (this.img_item_num[row.item_id] && this.b_img_item[rowIndex]) {
           const _row = this.img_item_num[row.item_id];
-          // this.img_item_num[row.item_id] = -1;
           const _col = _row > 0 ? 1 : 0;
           return {
             rowspan: _row,
             colspan: _col
           };
-        }else{
+        } else {
           return {
             rowspan: 0,
             colspan: 0
-          }
+          };
         }
       }
     }

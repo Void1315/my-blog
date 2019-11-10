@@ -119,12 +119,14 @@ module.exports = {
     //初始化文章修改
     initArticleEditor() {
       getArticle(this.$route.params.id).then(res=>{
-        for (var i = 0; i < res.data.tages.length; i++) {
-          this.form.tages.push(res.data.tages[i].name);
+        const {tages, title, img_url, img_id, text} = res.data;
+        for (let tag of tages) {
+          this.form.tages.push(tag.name);
         }
-        this.form = { ...res.data };
-        this.form.text = res.data.text;
-        this.form.fileList.push({ name: "封面", url: res.data.img_url });
+        this.form.title = title
+        this.form.text = text;
+        this.form.img_id = img_id;
+        this.form.fileList.push({ name: "封面", url: img_url });
       })
     },
     querySearch(queryString, cb) {
