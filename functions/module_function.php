@@ -1,7 +1,7 @@
-<?php 
+<?php
 
+function pathToFileName($path) //返回文件名字带后缀
 
-function pathToFileName($path)//返回文件名字带后缀
 {
     $filename = explode('/', $path);
     $filename = end($filename);
@@ -11,22 +11,28 @@ function pathToFileName($path)//返回文件名字带后缀
 function pathToFileType($path)
 {
     $filename = pathToFileName($path);
-    $fileType = explode('.',$filename);
+    $fileType = explode('.', $filename);
     return end($fileType);
 }
 
-function zipImage($zipPath,$path)
+function zipImage($zipPath, $path)
 {
-	// $pythonPath = "/usr/bin/python3 /var/www/vue-blog/resources/assets/python/main.py";
-    $pythonPath = "/usr/bin/python3 ".base_path()."/resources/assets/python/main.py";
-	$cmd_str = $pythonPath." ".$zipPath." ".$path;
-	$str = exec($pythonPath." ".$zipPath." ".$path);
-	// return $str;
-	return $cmd_str;
+
+    $img = Image::make($path);
+    $height = $img->height();
+    $width = $img->width();
+    $rate = 1.0;
+    if ($width >= 2000 || $height >= 2000)
+        $rate = 0.3;
+    elseif($width >= 1000 || $height >= 1000)
+        $rate = 0.4;
+    elseif ($width >= 500 || $height >= 500)
+        $rate = 0.6;
+    $img->resize($width * $rate, $height * $rate)->save($zipPath.'/'.pathToFileName($path));
+    return pathToFileName($path);
 }
 
-
-function axiosData($data=NULL, $status=200, $statusText='OK')
+function axiosData($data = null, $status = 200, $statusText = 'OK')
 {
     $arr = array('data' => $data, 'status' => $status, 'statusText' => $statusText);
     return json_encode($arr);
