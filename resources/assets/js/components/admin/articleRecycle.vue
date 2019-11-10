@@ -58,7 +58,6 @@
 					self.recycleleData = res.data
 				}).catch(function(error){
 					self.$message("出现了一些错误请稍后再试!");
-					console.log(error.res)
 				});
 			},
 	      	articleEdit(index,id){
