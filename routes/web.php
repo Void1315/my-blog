@@ -28,7 +28,7 @@ Route::namespace('Blog')->group(function () {
 	Route::get("/image/item","ImageController@showItem");//图片时间轴展示接口
 
 	
-	#Route::get("/yhy1315/init","UserController@init");//这是一个初始化账户的命令
+	Route::get("/yhy1315/init","UserController@init");//这是一个初始化账户的命令
 });
 Route::middleware(['auth'])->namespace('Blog')->group(function(){
 	Route::get("/admin/article/get/{id}","ArticleController@adminArticleGet");//可以获取软删除数据
