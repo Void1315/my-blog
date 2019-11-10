@@ -69,8 +69,7 @@ server {
 `npm run build`
 8. 生成符号链接
 ```
-cd my-blog
-ln -s /项目目录/storage/app/public/ /项目目录/public/storage
+php artisan storage:link
 ```
 9. 创建用户
 > 因为还没有写创建用户页面，所以先用接口代替。
