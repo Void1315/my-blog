@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.com/Void1315/my-blog.svg?branch=master)](https://travis-ci.com/Void1315/my-blog) 
-##自己用来学习vue与laravel搭建的个人blog
+## 自己用来学习vue与laravel搭建的个人blog
 *搭建流程*  
 1. clone到本地
 ```
