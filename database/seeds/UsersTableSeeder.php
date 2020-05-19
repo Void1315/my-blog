@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
+use Illuminate\Support\Facades\Hash;
 class UsersTableSeeder extends Seeder
 {
     /**
@@ -14,7 +14,7 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'asahi',
             'email' => '381848900@qq.com',
-            'password' => '$2y$10$aqBi8kB/9G4VzdfuFeASNe1DSCP/OTUqM2hpaBSbPIw...',//密码是： wqld1315
+            'password' => Hash::make("wqld1315"),//密码是： wqld1315
         ]);
     }
 }

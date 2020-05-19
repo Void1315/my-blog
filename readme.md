@@ -66,12 +66,16 @@ server {
 }
 ```
 7. 打包前端js文件
-`npm run build`
+`npm run prod`
 8. 生成符号链接
 ```
 php artisan storage:link
 ```
 9. 创建用户
+运行迁移种子生成账户
+```
+php artisan db:seed --class=UsersTableSeeder
+```
 > 因为还没有写创建用户页面，所以先用接口代替。
 > 项目部署好后 url输入/yhy1315/init
 > 将会生成一个
