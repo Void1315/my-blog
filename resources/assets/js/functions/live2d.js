@@ -1,6 +1,6 @@
 class Live2D {
     constructor(){
-        this.live2d_path = "https://l.vue-blog.yuhaoyan.cn/js/live2d/";
+        this.live2d_path = "https://www.yuhaoyan.cn/js/live2d/";
         this.api_path = "https://live2d-api.yuhaoyan.cn/"
     }
     autoload () {
