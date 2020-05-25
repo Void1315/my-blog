@@ -1,7 +1,7 @@
 class Live2D {
     constructor(){
         this.live2d_path = "https://l.vue-blog.yuhaoyan.cn/js/live2d/";
-        this.api_path = "http://live2d-api.yuhaoyan.cn/"
+        this.api_path = "https://live2d-api.yuhaoyan.cn/"
     }
     autoload () {
         if (screen.width >= 768) {
@@ -12,7 +12,7 @@ class Live2D {
             ]).then(() => {
                 initWidget({
                     waifuPath: this.live2d_path + "waifu-tips.json",
-                    apiPath: "http://live2d-api.yuhaoyan.cn/",
+                    apiPath: "https://live2d-api.yuhaoyan.cn/",
                 });
             });
         }
