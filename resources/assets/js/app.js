@@ -25,6 +25,7 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/display.css';
 import 'element-ui/lib/theme-chalk/base.css';
 import axios from 'axios';
+import Live2d from './functions/live2d'
 // import marked from "marked";
 //图片懒加载
 import VueLazyLoad from 'vue-lazyload';
@@ -43,3 +44,5 @@ const app = new Vue({
   el: '#app',
   router,
 }).$mount('#app');
+const live2d = new Live2d();
+live2d.autoload();

@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.com/Void1315/my-blog.svg?branch=master)](https://travis-ci.com/Void1315/my-blog) 
-## 自己用来学习vue与laravel搭建的个人blog
-*搭建流程*  
+# 自己用来学习vue与laravel搭建的个人blog
+## 搭建流程
 1. clone到本地
 ```
 git clone git@github.com:Void1315/my-blog.git
@@ -66,12 +66,16 @@ server {
 }
 ```
 7. 打包前端js文件
-`npm run build`
+`npm run prod`
 8. 生成符号链接
 ```
 php artisan storage:link
 ```
 9. 创建用户
+运行迁移种子生成账户
+```
+php artisan db:seed --class=UsersTableSeeder
+```
 > 因为还没有写创建用户页面，所以先用接口代替。
 > 项目部署好后 url输入/yhy1315/init
 > 将会生成一个
@@ -79,3 +83,15 @@ php artisan storage:link
 > 密码为wqld1315
 > 的账号。
 > 
+
+## 启动
+### 热加载
+```
+php artisan serve # 启动php服务器
+npm run hot # 前端资源热加载
+```
+### 编译
+```
+npm run prod # 生产环境编译
+npm run dev # 开发环境编译
+```
