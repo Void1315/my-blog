@@ -45,5 +45,4 @@ const app = new Vue({
   router,
 }).$mount('#app');
 const live2d = new Live2d();
-console.log(live2d.autoload)
 live2d.autoload();
